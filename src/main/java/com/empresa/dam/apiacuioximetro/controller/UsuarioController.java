@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/usuario")
 public class UsuarioController extends ApiController<Usuario>{
-    @Autowired
     public UsuarioController(CrudService<Usuario> serviceCrud){
         super(serviceCrud);
     }
