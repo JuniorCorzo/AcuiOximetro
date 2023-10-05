@@ -1,6 +1,6 @@
 package com.empresa.dam.apiacuioximetro.service.impl;
 
-import com.empresa.dam.apiacuioximetro.entity.HistorialOxigeno;
+import com.empresa.dam.apiacuioximetro.entity.HistoriaOxigeno;
 import com.empresa.dam.apiacuioximetro.repository.HistoriaNivelRepository;
 import com.empresa.dam.apiacuioximetro.service.CrudService;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 @Primary
 @NoArgsConstructor
-public class HistoriaServiceCrud implements CrudService<HistorialOxigeno> {
+public class HistoriaServiceCrud implements CrudService<HistoriaOxigeno> {
     private HistoriaNivelRepository repository;
 
     @Autowired
@@ -22,22 +22,22 @@ public class HistoriaServiceCrud implements CrudService<HistorialOxigeno> {
     }
 
     @Override
-    public List<HistorialOxigeno> findAll() {
+    public List<HistoriaOxigeno> findAll() {
         return this.repository.findAll();
     }
 
     @Override
-    public HistorialOxigeno findById(int id) {
+    public HistoriaOxigeno findById(int id) {
         return this.repository.findById(id).orElseThrow(() -> new RuntimeException("Historial de oxigeno no encotrado"));
     }
 
     @Override
-    public HistorialOxigeno create(HistorialOxigeno entity) {
+    public HistoriaOxigeno create(HistoriaOxigeno entity) {
         return this.repository.save(entity);
     }
 
     @Override
-    public HistorialOxigeno update(HistorialOxigeno entity) {
+    public HistoriaOxigeno update(HistoriaOxigeno entity) {
         if (!this.repository.existsById(entity.idEstanque())) throw new RuntimeException("Historial de oxigeno no encontrado");
         return this.repository.save(entity);
     }

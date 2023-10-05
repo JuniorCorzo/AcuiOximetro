@@ -1,27 +1,46 @@
 package com.empresa.dam.apiacuioximetro.controller;
 
 import com.empresa.dam.apiacuioximetro.entity.Usuario;
-import com.empresa.dam.apiacuioximetro.service.decorator.ServiceCrudImplDecorator;
+import com.empresa.dam.apiacuioximetro.service.CrudService;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api/")
-public class ApiController {
-
-    final
-    ServiceCrudImplDecorator<Usuario> usuariosService;
+@NoArgsConstructor
+@RequestMapping("")
+public class ApiController<T> {
+    private CrudService<T> serviceCrud;
 
     @Autowired
-    public ApiController(ServiceCrudImplDecorator<Usuario> usuariosService) {
-        this.usuariosService = usuariosService;
+    public ApiController(CrudService<T> serviceCrud) {
+        this.serviceCrud = serviceCrud;
     }
+
     @GetMapping("/")
-    public List<Usuario> findAll(){
-        return usuariosService.findAll();
+    public List<T> findAll(){
+        return this.serviceCrud.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public T findById(@PathVariable int id){
+        return this.serviceCrud.findById(id);
+    }
+
+    @PostMapping("/create")
+    public T create(@RequestBody T entity){
+        return this.serviceCrud.create(entity);
+    }
+
+    @PutMapping("/update")
+    public T update(@RequestBody T entity){
+        return this.serviceCrud.update(entity);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public boolean deleteById(@PathVariable int id){
+        return this.serviceCrud.deleteById(id);
     }
 }
