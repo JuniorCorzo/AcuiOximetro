@@ -3,15 +3,18 @@ package com.empresa.dam.apiacuioximetro.service.impl;
 import com.empresa.dam.apiacuioximetro.entity.HistorialOxigeno;
 import com.empresa.dam.apiacuioximetro.repository.HistoriaNivelRepository;
 import com.empresa.dam.apiacuioximetro.service.CrudService;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Primary
+@NoArgsConstructor
 public class HistoriaServiceCrud implements CrudService<HistorialOxigeno> {
-
-    private final HistoriaNivelRepository repository;
+    private HistoriaNivelRepository repository;
 
     @Autowired
     public HistoriaServiceCrud(HistoriaNivelRepository repository) {

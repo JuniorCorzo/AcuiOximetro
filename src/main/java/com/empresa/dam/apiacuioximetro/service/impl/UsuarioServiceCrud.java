@@ -3,14 +3,16 @@ package com.empresa.dam.apiacuioximetro.service.impl;
 import com.empresa.dam.apiacuioximetro.entity.Usuario;
 import com.empresa.dam.apiacuioximetro.repository.UsuarioRepository;
 import com.empresa.dam.apiacuioximetro.service.CrudService;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@NoArgsConstructor
 public class UsuarioServiceCrud implements CrudService<Usuario> {
-    private final UsuarioRepository repository;
+    private UsuarioRepository repository;
 
     @Autowired
     public UsuarioServiceCrud(UsuarioRepository repository) {
