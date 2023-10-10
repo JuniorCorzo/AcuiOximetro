@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @Primary
 @NoArgsConstructor
-public class HistoriaServiceCrud implements CrudService<HistoriaOxigeno> {
+public class HistoriaServiceCrud {
     private HistoriaNivelRepository repository;
 
     @Autowired
@@ -20,30 +20,30 @@ public class HistoriaServiceCrud implements CrudService<HistoriaOxigeno> {
         this.repository = repository;
     }
 
-    @Override
     public List<HistoriaOxigeno> findAll() {
         return this.repository.findAll();
     }
 
-    @Override
     public HistoriaOxigeno findById(int id) {
         return this.repository.findById(id).orElseThrow(() -> new RuntimeException("Historial de oxigeno no encotrado"));
     }
 
-    @Override
     public HistoriaOxigeno create(HistoriaOxigeno entity) {
         return this.repository.save(entity);
     }
 
-    @Override
     public HistoriaOxigeno update(HistoriaOxigeno entity) {
-        if (!this.repository.existsById(entity.idEstanque())) throw new RuntimeException("Historial de oxigeno no encontrado");
+        if (!this.repository.existsById(entity.idEstanque()))
+            throw new RuntimeException("Historial de oxigeno no encontrado");
         return this.repository.save(entity);
     }
 
-    @Override
     public boolean deleteById(int id) {
         this.repository.deleteById(id);
         return !this.repository.existsById(id);
+    }
+
+    public List<HistoriaOxigeno> findLasFive() {
+        return this.repository.findLastFive();
     }
 }
