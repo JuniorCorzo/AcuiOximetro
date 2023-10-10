@@ -1,8 +1,7 @@
-package com.empresa.dam.apiacuioximetro.service.impl;
+package com.empresa.dam.apiacuioximetro.service;
 
 import com.empresa.dam.apiacuioximetro.entity.HistoriaOxigeno;
 import com.empresa.dam.apiacuioximetro.repository.HistoriaNivelRepository;
-import com.empresa.dam.apiacuioximetro.service.CrudService;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;

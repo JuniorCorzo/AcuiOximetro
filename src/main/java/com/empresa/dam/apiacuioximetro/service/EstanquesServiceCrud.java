@@ -1,8 +1,7 @@
-package com.empresa.dam.apiacuioximetro.service.impl;
+package com.empresa.dam.apiacuioximetro.service;
 
 import com.empresa.dam.apiacuioximetro.entity.Estanques;
 import com.empresa.dam.apiacuioximetro.repository.EstanquesRepository;
-import com.empresa.dam.apiacuioximetro.service.CrudService;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,7 @@ import java.util.List;
 
 @Service
 @NoArgsConstructor
-public class EstanquesServiceCrud implements CrudService<Estanques> {
+public class EstanquesServiceCrud{
     private EstanquesRepository repository;
 
     @Autowired
@@ -19,28 +18,28 @@ public class EstanquesServiceCrud implements CrudService<Estanques> {
         this.repository = repository;
     }
 
-    @Override
+    
     public List<Estanques> findAll() {
         return this.repository.findAll();
     }
 
-    @Override
+    
     public Estanques findById(int id) {
         return this.repository.findById(id).orElseThrow(() -> new RuntimeException("No se encontro el id del estanque"));
     }
 
-    @Override
+    
     public Estanques create(Estanques entity) {
         return this.repository.save(entity);
     }
 
-    @Override
+    
     public Estanques update(Estanques entity) {
         if(!this.repository.existsById(entity.id())) throw new RuntimeException("No se encontro el estanque a actualizar");
         return this.repository.save(entity);
     }
 
-    @Override
+    
     public boolean deleteById(int id) {
         this.repository.deleteById(id);
         return !this.repository.existsById(id);
