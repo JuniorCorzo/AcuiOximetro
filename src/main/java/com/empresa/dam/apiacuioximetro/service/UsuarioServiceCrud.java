@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @NoArgsConstructor
 public class UsuarioServiceCrud {
@@ -17,12 +15,6 @@ public class UsuarioServiceCrud {
     public UsuarioServiceCrud(UsuarioRepository repository) {
         this.repository = repository;
     }
-
-    
-    public List<Usuario> findAll() {
-        return repository.findAll();
-    }
-
     
     public Usuario findById(int id) {
         return repository.findById(id).orElse(null);
@@ -32,19 +24,14 @@ public class UsuarioServiceCrud {
         return this.repository.findByCorreoAndClave(correo, clave) != null;
     }
     
-    public Usuario create(Usuario entity) {
-        return repository.save(entity);
+    public void create(Usuario entity) {
+        repository.save(entity);
     }
 
     
-    public Usuario update(Usuario entity) {
+    public void update(Usuario entity) {
         if(!repository.existsById(entity.idUsuario())) throw new RuntimeException("Usuario no existe");
-        return repository.save(entity);
+        repository.save(entity);
     }
-
     
-    public boolean deleteById(int id) {
-        repository.deleteById(id);
-        return !repository.existsById(id);
-    }
 }

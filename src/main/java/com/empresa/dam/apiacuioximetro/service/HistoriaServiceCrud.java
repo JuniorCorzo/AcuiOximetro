@@ -28,21 +28,6 @@ public class HistoriaServiceCrud {
         return this.repository.findById(id).orElseThrow(() -> new RuntimeException("Historial de oxigeno no encotrado"));
     }
 
-    public HistoriaOxigeno create(HistoriaOxigeno entity) {
-        return this.repository.save(entity);
-    }
-
-    public HistoriaOxigeno update(HistoriaOxigeno entity) {
-        if (!this.repository.existsById(entity.idEstanque()))
-            throw new RuntimeException("Historial de oxigeno no encontrado");
-        return this.repository.save(entity);
-    }
-
-    public boolean deleteById(int id) {
-        this.repository.deleteById(id);
-        return !this.repository.existsById(id);
-    }
-
     public List<HistoriaOxigeno> findLasFive() {
         return this.repository.findLastFive();
     }

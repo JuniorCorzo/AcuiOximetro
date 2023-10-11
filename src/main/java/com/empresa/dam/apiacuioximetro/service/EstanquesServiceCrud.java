@@ -29,14 +29,14 @@ public class EstanquesServiceCrud{
     }
 
     
-    public Estanques create(Estanques entity) {
-        return this.repository.save(entity);
+    public void create(Estanques entity) {
+        this.repository.save(entity);
     }
 
     
-    public Estanques update(Estanques entity) {
+    public void update(Estanques entity) {
         if(!this.repository.existsById(entity.id())) throw new RuntimeException("No se encontro el estanque a actualizar");
-        return this.repository.save(entity);
+        this.repository.save(entity);
     }
 
     
