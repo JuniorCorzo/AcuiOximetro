@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/usuarios")
+@RequestMapping("api/v1/usuarios")
 public class UsuarioController {
 
     private final UsuarioServiceCrud serviceCrud;

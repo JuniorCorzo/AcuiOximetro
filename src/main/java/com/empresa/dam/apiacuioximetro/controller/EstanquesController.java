@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/estanques")
+@RequestMapping("api/v1/estanques")
 public class EstanquesController {
     private final EstanquesServiceCrud serviceCrud;
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/historia")
+@RequestMapping("api/v1/historia")
 public class HistoriaController {
     private final HistoriaServiceCrud serviceCrud;
     public HistoriaController(HistoriaServiceCrud serviceCrud) {
