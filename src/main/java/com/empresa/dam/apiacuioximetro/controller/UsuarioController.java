@@ -2,6 +2,7 @@ package com.empresa.dam.apiacuioximetro.controller;
 
 import com.empresa.dam.apiacuioximetro.entity.Usuario;
 import com.empresa.dam.apiacuioximetro.service.UsuarioServiceCrud;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -29,13 +30,13 @@ public class UsuarioController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
-    public void create(@RequestBody Usuario usuario){
+    public void create(@Valid @RequestBody Usuario usuario){
         this.serviceCrud.create(usuario);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/update")
-    public void update(@RequestBody Usuario usuario){
+    public void update(@Valid @RequestBody Usuario usuario){
         this.serviceCrud.update(usuario);
     }
 }
