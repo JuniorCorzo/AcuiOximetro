@@ -23,7 +23,7 @@ public class HistoriaController {
     public List<HistoriaOxigeno> findAll(){
         return serviceCrud.findAll();
     }
-    
+
     @GetMapping("/{id}")
     public HistoriaOxigeno findById(@PathVariable int id){
         return this.serviceCrud.findById(id);

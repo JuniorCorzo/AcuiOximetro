@@ -28,6 +28,9 @@ public class UsuarioServiceCrud {
         return repository.findById(id).orElse(null);
     }
 
+    public Boolean validate(String correo, String clave){
+        return this.repository.findByCorreoAndClave(correo, clave) != null;
+    }
     
     public Usuario create(Usuario entity) {
         return repository.save(entity);
