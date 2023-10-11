@@ -3,6 +3,7 @@ package com.empresa.dam.apiacuioximetro.controller;
 import com.empresa.dam.apiacuioximetro.entity.Estanques;
 import com.empresa.dam.apiacuioximetro.service.EstanquesServiceCrud;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,11 +22,13 @@ public class EstanquesController {
         return this.serviceCrud.findAll();
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
     public void create(@RequestBody Estanques estanques){
         this.serviceCrud.create(estanques);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/update")
     public void update(@RequestBody Estanques estanques){
         this.serviceCrud.update(estanques);
