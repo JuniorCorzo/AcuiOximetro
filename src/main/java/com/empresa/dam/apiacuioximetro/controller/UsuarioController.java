@@ -34,7 +34,7 @@ public class UsuarioController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PostMapping("/update")
+    @PutMapping("/update")
     public void update(@RequestBody Usuario usuario){
         this.serviceCrud.update(usuario);
     }
