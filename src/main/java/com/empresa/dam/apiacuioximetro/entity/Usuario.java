@@ -7,31 +7,32 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+/**
+ * Esta clase representa un usuario en el sistema.
+ * Contiene información básica del usuario, como su identificador y otros
+ * detalles.
+ */
 @Table("usuario")
-public record Usuario(@Id
-                      @Column("id_usuario")
-                      @NotNull
-                      int idUsuario,
-                      @Column("rol")
-                      @NotNull
-                      @NotEmpty
-                      String rol,
-                      @Column("nombre")
-                      @NotNull
-                      @NotEmpty
-                      String nombre,
-                      @Column("apellido")
-                      @NotNull
-                      @NotEmpty
-                      String apellido,
-                      @Column("correo")
-                      @NotNull
-                      @NotEmpty
-                      @Email
-                      String correo,
-                      @Column("clave")
-                      @NotNull
-                      @NotEmpty
-                      String clave
-) {
+public record Usuario(
+        // Identificador único del usuario.
+        @Id @Column("id_usuario") @NotNull int idUsuario,
+
+        // Rol del usuario en el sistema.
+
+        @Column("rol") @NotNull @NotEmpty String rol,
+
+        // Nombre del usuario.
+
+        @Column("nombre") @NotNull @NotEmpty String nombre,
+
+        // Apellido del usuario.
+        @Column("apellido") @NotNull @NotEmpty String apellido,
+
+        // Correo electrónico del usuario.
+
+        @Column("correo") @NotNull @NotEmpty @Email String correo,
+
+        // Clave de acceso del usuario.
+
+        @Column("clave") @NotNull @NotEmpty String clave) {
 }

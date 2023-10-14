@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * HistoriaNivelRepository es el repositorio encargado de gestionar las
+ * operaciones CRUD de la entidad historia-oxigeno
+ */
 @Repository
 public interface HistoriaNivelRepository extends ListCrudRepository<HistoriaOxigeno, Integer> {
     @Query("SELECT * FROM historia_oxigeno ORDER BY fecha_hora_medicion DESC LIMIT 5")

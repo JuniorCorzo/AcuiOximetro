@@ -9,25 +9,51 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * HistoriaServiceCrud es el servicio encargado de gestionar las operaciones
+ * CRUD de la entidad historia-oxigeno
+ */
+
 @Service
 @Primary
 @NoArgsConstructor
 public class HistoriaServiceCrud {
     private HistoriaNivelRepository repository;
 
+    // Inyecta el repositorio de historia-oxigeno
     @Autowired
     public HistoriaServiceCrud(HistoriaNivelRepository repository) {
         this.repository = repository;
     }
 
+    /**
+     * Devuelve todo el contenido de la tabla historia-oxigeno
+     * 
+     * @return List<HistoriaOxigeno> - Lista de objetos HistoriaOxigeno
+     */
     public List<HistoriaOxigeno> findAll() {
         return this.repository.findAll();
     }
 
+    /**
+     * Devuelve el contenido de la tabla historia-oxigeno filtrado por id
+     * 
+     * @param id - id de la fila que quieres devolver
+     * @return HistoriaOxigeno - Objeto HistoriaOxigeno correspondiente al id
+     *         proporcionado
+     * @throws RuntimeException - Si no existe el id
+     */
     public HistoriaOxigeno findById(int id) {
-        return this.repository.findById(id).orElseThrow(() -> new RuntimeException("Historial de oxigeno no encotrado"));
+        return this.repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Historial de oxigeno no encontrado"));
     }
 
+    /**
+     * Devuelve los ultimos 5 registros de la tabla historia-oxigeno
+     * 
+     * @return List<HistoriaOxigeno> - Lista de los últimos 5 objetos
+     *         HistoriaOxigeno
+     */
     public List<HistoriaOxigeno> findLasFive() {
         return this.repository.findLastFive();
     }

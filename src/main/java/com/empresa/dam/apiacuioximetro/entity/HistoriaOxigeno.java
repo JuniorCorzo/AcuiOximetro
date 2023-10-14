@@ -7,16 +7,15 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.Date;
 
+/**
+ * Esta clase representa la entidad HistoriaOxigeno en la base de datos.
+ * La anotación @Table indica que esta clase está mapeada a la tabla
+ * "historia_oxigeno".
+ * La anotación @Id indica que el atributo que le sigue es la clave primaria de
+ * la tabla.
+ */
 @Table("historia_oxigeno")
-public record HistoriaOxigeno(@Id
-                              @Column("id_estanques")
-                              @NotNull
-                              int idEstanque,
-                              @Column("nivel_oxigenacion")
-                              @NotNull
-                              int nivelOxigenacion,
-                              @Column("fecha_hora_medicion")
-                              @NotNull
-                              Date fechaMedicion
-) {
+public record HistoriaOxigeno(@Id @Column("id_estanques") @NotNull int idEstanque,
+        @Column("nivel_oxigenacion") @NotNull int nivelOxigenacion,
+        @Column("fecha_hora_medicion") @NotNull Date fechaMedicion) {
 }

@@ -3,6 +3,11 @@ package com.empresa.dam.apiacuioximetro;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Método principal que inicia la aplicación de la API AcuiOximetro.
+ * 
+ * @param args Argumentos de línea de comandos.
+ */
 @SpringBootApplication
 public class ApiAcuiOximetroApplication {
 
