@@ -26,9 +26,9 @@ public class EstanquesServiceCrud {
     /**
      * Devuelve una lista que contenga todos los datos almacenados en la base de
      * datos
-     * 
+     *
      * @return List<Estanques> - lista de objetos Estanques que contiene todos los
-     *         datos almacenados en la base de datos
+     * datos almacenados en la base de datos
      */
     public List<Estanques> findAll() {
         return this.repository.findAll();
@@ -37,7 +37,7 @@ public class EstanquesServiceCrud {
     /**
      * Realiza una consulta a la base de datos para recuperar todos los datos
      * de una fila específica utilizando su identificador único (ID).
-     * 
+     *
      * @param id - id de la fila que quieres devolver
      * @return devuelve un objecto de estanques con todos los datos de la fila
      * @throws RuntimeException - Si no exite el id
@@ -72,10 +72,10 @@ public class EstanquesServiceCrud {
 
     /**
      * Elimina una fila de la base de datos utilizando su identificador único (ID).
-     * 
+     *
      * @param id - id de la fila que quieres eliminar
      * @return boolean - devuelve true si la fila fue eliminada exitosamente, de lo
-     *         contrario devuelve false
+     * contrario devuelve false
      */
     public boolean deleteById(int id) {
         this.repository.deleteById(id);
