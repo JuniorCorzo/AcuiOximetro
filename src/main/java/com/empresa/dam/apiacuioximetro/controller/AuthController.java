@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+/**
+    * Genera un token de autenticación para el usuario que realiza la petición.
+    * 
+    * @param authentication Objeto que contiene la información de autenticación del usuario.
+    * @return El token generado.
+    */
 @RestController
 public class AuthController {
     private static final Logger LOG = LoggerFactory.getLogger(AuthController.class);

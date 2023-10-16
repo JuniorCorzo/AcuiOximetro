@@ -15,10 +15,19 @@ import java.util.stream.Collectors;
 public class TokenService {
     private final JwtEncoder jwtEncoder;
 
+    /**
+     * Constructor de la clase TokenService.
+     * @param jwtEncoder Encoder utilizado para generar el token.
+     */
     public TokenService(JwtEncoder jwtEncoder) {
         this.jwtEncoder = jwtEncoder;
     }
 
+    /**
+     * Genera un token JWT a partir de la autenticación proporcionada.
+     * @param authentication Autenticación del usuario.
+     * @return Token JWT generado.
+     */
     public String generatedToken(Authentication authentication){
         Instant now = Instant.now();
         String scope = authentication.getAuthorities().stream()
