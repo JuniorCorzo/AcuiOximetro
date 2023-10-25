@@ -16,6 +16,6 @@ import java.util.Date;
  */
 @Table("historia_oxigeno")
 public record HistoriaOxigeno(@Id @Column("id_estanques") @NotNull int idEstanque,
-        @Column("nivel_oxigenacion") @NotNull int nivelOxigenacion,
+        @Column("nivel_oxigenacion") @NotNull double nivelOxigenacion,
         @Column("fecha_hora_medicion") @NotNull Date fechaMedicion) {
 }
