@@ -34,5 +34,6 @@ public record Usuario(
 
         // Clave de acceso del usuario.
 
-        @Column("clave") @NotNull @NotEmpty String clave) {
+        @Column("clave") @NotNull @NotEmpty String clave,
+        @Column("token") String token) {
 }
