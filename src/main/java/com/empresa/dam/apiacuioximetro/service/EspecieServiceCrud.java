@@ -20,7 +20,7 @@ public class EspecieServiceCrud {
     public Especie findById(int id){
         return repository.findById(id).orElseThrow();
     }
-    
+
     public void create(Especie especie){
         repository.save(especie);
     }
