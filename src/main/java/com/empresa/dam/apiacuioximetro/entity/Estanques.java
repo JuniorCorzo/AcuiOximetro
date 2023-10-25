@@ -18,6 +18,6 @@ import org.springframework.data.relational.core.mapping.Table;
  * la tabla.
  */
 @Table("estanques")
-public record Estanques(@Id @Column("id_estanque") @NotNull int id,
+public record Estanques(@Id @Column("id_estanque") @NotNull String id,
         @Column("tipo_estanque") @NotNull String tipoEstanque) {
 }
