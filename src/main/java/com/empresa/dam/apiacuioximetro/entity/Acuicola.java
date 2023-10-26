@@ -5,7 +5,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("acuicola")
-public record Acuicula(
+public record Acuicola(
         @Column("id_acuicola") @NotNull int idAcuicola,
         @Column("nombre)") @NotNull String nombre,
         @Column("direccion") @NotNull String direccion,
