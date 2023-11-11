@@ -1,6 +1,6 @@
 package com.empresa.dam.apiacuioximetro.service;
 
-import com.empresa.dam.apiacuioximetro.entity.Acuicula;
+import com.empresa.dam.apiacuioximetro.entity.Acuicola;
 import com.empresa.dam.apiacuioximetro.repository.AcuicolaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class AcuicolaServiceCrud {
         this.repository = repository;
     }
 
-    public Acuicula findById(int id){
+    public Acuicola findById(int id){
         return this.repository.findById(id).orElseThrow();
     }
 }

@@ -1,6 +1,6 @@
 package com.empresa.dam.apiacuioximetro.controller;
 
-import com.empresa.dam.apiacuioximetro.entity.Acuicula;
+import com.empresa.dam.apiacuioximetro.entity.Acuicola;
 import com.empresa.dam.apiacuioximetro.service.AcuicolaServiceCrud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +19,7 @@ public class AcuicolaController {
     }
 
     @GetMapping("/{id}")
-    public Acuicula findById(@PathVariable int id){
+    public Acuicola findById(@PathVariable int id){
         return this.serviceCrud.findById(id);
     }
 }
