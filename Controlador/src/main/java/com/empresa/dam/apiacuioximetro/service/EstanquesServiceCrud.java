@@ -1,6 +1,7 @@
 package com.empresa.dam.apiacuioximetro.service;
 
 import com.empresa.dam.apiacuioximetro.entity.Estanques;
+import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
 import com.empresa.dam.apiacuioximetro.repository.EstanquesRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +43,9 @@ public class EstanquesServiceCrud {
      * @return devuelve un objecto de estanques con todos los datos de la fila
      * @throws RuntimeException - Si no exite el id
      */
-    public Estanques findById(int id) {
+    public Estanques findById(int id) throws DataNotFoundById {
         return this.repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No se encontro el id del estanque"));
+                .orElseThrow(() -> new DataNotFoundById("Estanques", id));
     }
 
     /**
@@ -64,9 +65,9 @@ public class EstanquesServiceCrud {
      *               estanques
      * @throws RuntimeException - Si no exite el id
      */
-    public void update(Estanques entity) {
-        if (!this.repository.existsById(entity.id()))
-            throw new RuntimeException("No se encontro el estanque a actualizar");
+    public void update(Estanques entity) throws DataNotFoundById {
+        if (!this.repository.existsById(Integer.valueOf(entity.id())))
+            throw new DataNotFoundById("Estanques", Integer.parseInt(entity.id()));
         this.repository.save(entity);
     }
 

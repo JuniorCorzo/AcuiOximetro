@@ -1,6 +1,8 @@
 package com.empresa.dam.apiacuioximetro.service;
 
 import com.empresa.dam.apiacuioximetro.entity.Usuario;
+import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
+import com.empresa.dam.apiacuioximetro.exceptions.UserNotExist;
 import com.empresa.dam.apiacuioximetro.repository.UsuarioRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +28,8 @@ public class UsuarioServiceCrud {
      * @param id El ID del usuario a buscar.
      * @return El usuario con el ID especificado, o null si no se encuentra.
      */
-    public Usuario findById(int id) {
-        return repository.findById(id).orElse(null);
+    public Usuario findById(int id) throws UserNotExist {
+        return repository.findById(id).orElseThrow(() -> new UserNotExist(id));
     }
 
     /**
@@ -37,8 +39,10 @@ public class UsuarioServiceCrud {
      * @param clave  La contraseña del usuario.
      * @return true si las credenciales son válidas, false en caso contrario.
      */
-    public Boolean validate(String correo, String clave) {
-        return this.repository.findByCorreoAndClave(correo, clave) != null;
+    public Boolean validate(String correo, String clave) throws UserNotExist {
+        if (this.repository.findByCorreoAndClave(correo, clave) == null)
+            throw new UserNotExist(correo);
+        return true;
     }
 
     /**
@@ -56,9 +60,9 @@ public class UsuarioServiceCrud {
      * @param entity El usuario a actualizar.
      * @throws RuntimeException si el usuario no existe.
      */
-    public void update(Usuario entity) {
+    public void update(Usuario entity) throws UserNotExist {
         if (!repository.existsById(entity.idUsuario()))
-            throw new RuntimeException("Usuario no existe");
+            throw new UserNotExist(entity.idUsuario());
         repository.save(entity);
     }
 

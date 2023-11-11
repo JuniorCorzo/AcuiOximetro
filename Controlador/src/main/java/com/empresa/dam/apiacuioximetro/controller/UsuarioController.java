@@ -1,6 +1,8 @@
 package com.empresa.dam.apiacuioximetro.controller;
 
 import com.empresa.dam.apiacuioximetro.entity.Usuario;
+import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
+import com.empresa.dam.apiacuioximetro.exceptions.UserNotExist;
 import com.empresa.dam.apiacuioximetro.service.UsuarioServiceCrud;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +37,7 @@ public class UsuarioController {
      * @return Objeto Usuario correspondiente al ID proporcionado.
      */
     @GetMapping("/{id}")
-    public Usuario findById(@PathVariable int id) {
+    public Usuario findById(@PathVariable int id) throws UserNotExist {
         return this.serviceCrud.findById(id);
     }
 
@@ -47,7 +49,7 @@ public class UsuarioController {
      * @return Booleano que indica si las credenciales son válidas o no.
      */
     @GetMapping("/validate")
-    public Boolean validatedUsuario(@RequestParam("correo") String correo, @RequestParam("clave") String clave) {
+    public Boolean validatedUsuario(@RequestParam("correo") String correo, @RequestParam("clave") String clave) throws UserNotExist {
         return this.serviceCrud.validate(correo, clave);
     }
 
@@ -69,7 +71,7 @@ public class UsuarioController {
      */
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/update")
-    public void update(@Valid @RequestBody Usuario usuario) {
+    public void update(@Valid @RequestBody Usuario usuario) throws UserNotExist {
         this.serviceCrud.update(usuario);
     }
 

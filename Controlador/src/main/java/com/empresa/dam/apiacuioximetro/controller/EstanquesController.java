@@ -1,8 +1,10 @@
 package com.empresa.dam.apiacuioximetro.controller;
 
 import com.empresa.dam.apiacuioximetro.entity.Estanques;
+import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
 import com.empresa.dam.apiacuioximetro.service.EstanquesServiceCrud;
 import jakarta.validation.Valid;
+import lombok.SneakyThrows;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,7 +62,7 @@ public class EstanquesController {
      */
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/update")
-    public void update(@Valid @RequestBody Estanques estanques) {
+    public void update(@Valid @RequestBody Estanques estanques) throws DataNotFoundById {
         this.serviceCrud.update(estanques);
     }
 

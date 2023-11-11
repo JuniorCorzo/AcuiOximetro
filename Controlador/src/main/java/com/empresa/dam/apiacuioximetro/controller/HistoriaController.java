@@ -1,6 +1,7 @@
 package com.empresa.dam.apiacuioximetro.controller;
 
 import com.empresa.dam.apiacuioximetro.entity.HistoriaOxigeno;
+import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
 import com.empresa.dam.apiacuioximetro.service.HistoriaServiceCrud;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,7 +49,7 @@ public class HistoriaController {
      * @return el nivel de oxigeno con el ID especificado.
      */
     @GetMapping("/{id}")
-    public HistoriaOxigeno findById(@PathVariable int id) {
+    public HistoriaOxigeno findById(@PathVariable int id) throws DataNotFoundById {
         return this.serviceCrud.findById(id);
     }
 

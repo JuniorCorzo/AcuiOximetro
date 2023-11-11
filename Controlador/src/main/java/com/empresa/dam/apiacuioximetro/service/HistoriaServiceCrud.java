@@ -1,6 +1,7 @@
 package com.empresa.dam.apiacuioximetro.service;
 
 import com.empresa.dam.apiacuioximetro.entity.HistoriaOxigeno;
+import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
 import com.empresa.dam.apiacuioximetro.repository.HistoriaNivelRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +44,9 @@ public class HistoriaServiceCrud {
      *         proporcionado
      * @throws RuntimeException - Si no existe el id
      */
-    public HistoriaOxigeno findById(int id) {
+    public HistoriaOxigeno findById(int id) throws DataNotFoundById {
         return this.repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Historial de oxigeno no encontrado"));
+                .orElseThrow(() -> new DataNotFoundById("HistoriaOxigeno", id));
     }
 
     /**
