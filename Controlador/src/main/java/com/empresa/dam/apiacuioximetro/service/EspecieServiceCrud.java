@@ -1,6 +1,7 @@
 package com.empresa.dam.apiacuioximetro.service;
 
 import com.empresa.dam.apiacuioximetro.entity.Especie;
+import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
 import com.empresa.dam.apiacuioximetro.repository.EspecieRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class EspecieServiceCrud {
         this.repository = repository;
     }
 
-    public Especie findById(int id){
-        return repository.findById(id).orElseThrow();
+    public Especie findById(int id) throws DataNotFoundById {
+        return repository.findById(id).orElseThrow(() -> new DataNotFoundById("Especie", id));
     }
 
     public void create(Especie especie){
