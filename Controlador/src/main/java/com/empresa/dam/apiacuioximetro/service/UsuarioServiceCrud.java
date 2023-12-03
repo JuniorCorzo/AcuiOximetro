@@ -51,7 +51,8 @@ public class UsuarioServiceCrud {
      * @param entity El usuario a crear.
      */
     public void create(Usuario entity) {
-        this.repository.save(entity);
+        this.repository.create(entity.idUsuario(), entity.rol(), entity.nombre(), entity.apellido(), entity.correo(),
+                entity.clave());
     }
 
     /**

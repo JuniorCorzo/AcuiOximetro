@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+
 @Table("especie")
 public record Especie(@Id @Column("id_especie") @NotNull int id,
                       @Column("nombre") @NotNull @NotEmpty String nombre) {

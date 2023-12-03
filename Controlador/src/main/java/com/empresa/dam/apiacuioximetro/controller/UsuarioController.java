@@ -69,7 +69,7 @@ public class UsuarioController {
      * 
      * @param usuario Objeto Usuario que se desea actualizar.
      */
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/update")
     public void update(@Valid @RequestBody Usuario usuario) throws UserNotExist {
         this.serviceCrud.update(usuario);

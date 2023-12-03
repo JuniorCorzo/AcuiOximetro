@@ -3,15 +3,12 @@ package com.empresa.dam.apiacuioximetro.entity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import lombok.EqualsAndHashCode;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-/**
- * Esta clase representa un usuario en el sistema.
- * Contiene información básica del usuario, como su identificador y otros
- * detalles.
- */
+
 @Table("usuario")
 public record Usuario(
         // Identificador único del usuario.
