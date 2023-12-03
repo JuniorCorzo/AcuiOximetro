@@ -1,6 +1,7 @@
 package com.empresa.dam.apiacuioximetro.entity;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
@@ -20,5 +21,7 @@ import org.springframework.data.relational.core.mapping.Table;
  */
 @Table("estanques")
 public record Estanques(@Id @Column("id_estanque") @NotNull String id,
-        @Column("tipo_estanque") @NotNull String tipoEstanque) {
+        @Column("id_especie") @NotNull int idEspecie,
+        @Column("tipo_estanque") @NotNull String tipoEstanque,
+        @Column("cantidad_peces") int cantidadPeces){
 }
