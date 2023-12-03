@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -38,15 +39,18 @@ public class HistoriaServiceCrud {
 
     /**
      * Devuelve el contenido de la tabla historia-oxigeno filtrado por id
-     * 
+     *
      * @param id - id de la fila que quieres devolver
      * @return HistoriaOxigeno - Objeto HistoriaOxigeno correspondiente al id
-     *         proporcionado
+     * proporcionado
      * @throws RuntimeException - Si no existe el id
      */
-    public HistoriaOxigeno findById(int id) throws DataNotFoundById {
-        return this.repository.findById(id)
-                .orElseThrow(() -> new DataNotFoundById("HistoriaOxigeno", id));
+    public List<HistoriaOxigeno> findById(int id) throws DataNotFoundById {
+        List<HistoriaOxigeno> historiaOxigenoList = this.repository.findAllById(Collections.singleton(id));
+        if (historiaOxigenoList.isEmpty()) {
+            throw new DataNotFoundById("HistoriaOxigeno", id);
+        }
+        return historiaOxigenoList;
     }
 
     /**

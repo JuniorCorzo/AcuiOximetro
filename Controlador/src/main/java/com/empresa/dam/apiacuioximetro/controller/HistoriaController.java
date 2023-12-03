@@ -44,12 +44,12 @@ public class HistoriaController {
     /**
      * Metodo HTTP GET que busca y devuelve la historia de oxígeno con el ID
      * especificado.
-     * 
+     *
      * @param id el ID del nivel de oxígeno a buscar.
      * @return el nivel de oxigeno con el ID especificado.
      */
     @GetMapping("/{id}")
-    public HistoriaOxigeno findById(@PathVariable int id) throws DataNotFoundById {
+    public List<HistoriaOxigeno> findById(@PathVariable int id) throws DataNotFoundById {
         return this.serviceCrud.findById(id);
     }
 

@@ -60,7 +60,7 @@ public class EstanquesController {
      * @param estanques - Objecto que almacena los datos necesarios de la entidad
      *                  estanques
      */
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/update")
     public void update(@Valid @RequestBody Estanques estanques) throws DataNotFoundById {
         this.serviceCrud.update(estanques);
