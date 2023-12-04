@@ -1,6 +1,6 @@
 package com.empresa.dam.apiacuioximetro.repository;
 
-import com.empresa.dam.apiacuioximetro.entity.Usuario;
+import com.empresa.dam.apiacuioximetro.entity.Usuarios;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.ListCrudRepository;
@@ -13,13 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
  * CRUD de la entidad usuario
  */
 @Repository
-public interface UsuarioRepository extends ListCrudRepository<Usuario, Integer> {
-    Usuario findByCorreoAndClave(String correo, String clave);
+public interface UsuarioRepository extends ListCrudRepository<Usuarios, Integer> {
+    Usuarios findByCorreoAndClave(String correo, String clave);
 
     @Modifying
-    @Query("INSERT INTO usuario (usuario.`id_usuario`, usuario.`rol`," +
-            " usuario.`nombre`, usuario.`apellido`, usuario.`correo`," +
-            " usuario.`clave`) VALUES (:id_usuario, :rol, :nombre, :apellido, :correo, :clave)")
+    @Query("INSERT INTO usuarios (usuarios.`id_usuario`, usuarios.`rol`," +
+            " usuarios.`nombre`, usuarios.`apellido`, usuarios.`correo`," +
+            " usuarios.`clave`) VALUES (:id_usuario, :rol, :nombre, :apellido, :correo, :clave)")
     @Transactional
     void create(@Param("id_usuario") int id_usuario, @Param("rol") String rol,
                 @Param("nombre") String nombre, @Param("apellido") String apellido,

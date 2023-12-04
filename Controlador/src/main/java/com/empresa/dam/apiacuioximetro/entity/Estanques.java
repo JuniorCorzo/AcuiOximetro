@@ -20,8 +20,8 @@ import org.springframework.data.relational.core.mapping.Table;
  * la tabla.
  */
 @Table("estanques")
-public record Estanques(@Id @Column("id_estanque") @NotNull String id,
-        @Column("id_especie") @NotNull int idEspecie,
+public record Estanques(@Id @Column("id_estanque") String id,
+        @Column("id_especie") int idEspecie,
         @Column("tipo_estanque") @NotNull String tipoEstanque,
         @Column("cantidad_peces") int cantidadPeces){
 }

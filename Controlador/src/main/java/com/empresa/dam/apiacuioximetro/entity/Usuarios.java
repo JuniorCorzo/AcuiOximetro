@@ -9,8 +9,8 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 
-@Table("usuario")
-public record Usuario(
+@Table("usuarios")
+public record Usuarios(
         // Identificador único del usuario.
         @Id @Column("id_usuario") @NotNull int idUsuario,
 

@@ -1,6 +1,6 @@
 package com.empresa.dam.apiacuioximetro.service;
 
-import com.empresa.dam.apiacuioximetro.entity.Usuario;
+import com.empresa.dam.apiacuioximetro.entity.Usuarios;
 import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
 import com.empresa.dam.apiacuioximetro.exceptions.UserNotExist;
 import com.empresa.dam.apiacuioximetro.repository.UsuarioRepository;
@@ -28,7 +28,7 @@ public class UsuarioServiceCrud {
      * @param id El ID del usuario a buscar.
      * @return El usuario con el ID especificado, o null si no se encuentra.
      */
-    public Usuario findById(int id) throws UserNotExist {
+    public Usuarios findById(int id) throws UserNotExist {
         return repository.findById(id).orElseThrow(() -> new UserNotExist(id));
     }
 
@@ -50,7 +50,7 @@ public class UsuarioServiceCrud {
      * 
      * @param entity El usuario a crear.
      */
-    public void create(Usuario entity) {
+    public void create(Usuarios entity) {
         this.repository.create(entity.idUsuario(), entity.rol(), entity.nombre(), entity.apellido(), entity.correo(),
                 entity.clave());
     }
@@ -61,7 +61,7 @@ public class UsuarioServiceCrud {
      * @param entity El usuario a actualizar.
      * @throws RuntimeException si el usuario no existe.
      */
-    public void update(Usuario entity) throws UserNotExist {
+    public void update(Usuarios entity) throws UserNotExist {
         if (!repository.existsById(entity.idUsuario()))
             throw new UserNotExist(entity.idUsuario());
         repository.save(entity);

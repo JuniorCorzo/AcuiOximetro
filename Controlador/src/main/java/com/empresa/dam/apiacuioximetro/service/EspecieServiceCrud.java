@@ -1,6 +1,6 @@
 package com.empresa.dam.apiacuioximetro.service;
 
-import com.empresa.dam.apiacuioximetro.entity.Especie;
+import com.empresa.dam.apiacuioximetro.entity.Especies;
 import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
 import com.empresa.dam.apiacuioximetro.repository.EspecieRepository;
 import lombok.NoArgsConstructor;
@@ -18,11 +18,11 @@ public class EspecieServiceCrud {
         this.repository = repository;
     }
 
-    public Especie findById(int id) throws DataNotFoundById {
+    public Especies findById(int id) throws DataNotFoundById {
         return repository.findById(id).orElseThrow(() -> new DataNotFoundById("Especie", id));
     }
 
-    public void create(Especie especie){
+    public void create(Especies especie){
         repository.save(especie);
     }
 

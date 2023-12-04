@@ -1,6 +1,6 @@
 package com.empresa.dam.apiacuioximetro.controller;
 
-import com.empresa.dam.apiacuioximetro.entity.Usuario;
+import com.empresa.dam.apiacuioximetro.entity.Usuarios;
 import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
 import com.empresa.dam.apiacuioximetro.exceptions.UserNotExist;
 import com.empresa.dam.apiacuioximetro.service.UsuarioServiceCrud;
@@ -37,7 +37,7 @@ public class UsuarioController {
      * @return Objeto Usuario correspondiente al ID proporcionado.
      */
     @GetMapping("/{id}")
-    public Usuario findById(@PathVariable int id) throws UserNotExist {
+    public Usuarios findById(@PathVariable int id) throws UserNotExist {
         return this.serviceCrud.findById(id);
     }
 
@@ -60,7 +60,7 @@ public class UsuarioController {
      */
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
-    public void create(@Valid @RequestBody Usuario usuario) {
+    public void create(@Valid @RequestBody Usuarios usuario) {
         this.serviceCrud.create(usuario);
     }
 
@@ -71,7 +71,7 @@ public class UsuarioController {
      */
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/update")
-    public void update(@Valid @RequestBody Usuario usuario) throws UserNotExist {
+    public void update(@Valid @RequestBody Usuarios usuario) throws UserNotExist {
         this.serviceCrud.update(usuario);
     }
 
