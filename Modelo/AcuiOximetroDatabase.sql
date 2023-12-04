@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `acuicola`
+-- Table structure for table `acuicolas`
 --
 
-DROP TABLE IF EXISTS `acuicola`;
+DROP TABLE IF EXISTS `acuicolas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `acuicola` (
+CREATE TABLE `acuicolas` (
   `id_acuicola` varchar(11) NOT NULL,
   `nombre` varchar(255) NOT NULL,
   `direccion` varchar(255) NOT NULL,
@@ -33,18 +33,18 @@ CREATE TABLE `acuicola` (
   KEY `fk_acuicola_usuario1_idx` (`id_usuario`),
   KEY `fk_acuicola_estanques1_idx` (`id_estanque`),
   CONSTRAINT `fk_acuicola_estanques1` FOREIGN KEY (`id_estanque`) REFERENCES `estanques` (`id_especie`),
-  CONSTRAINT `fk_acuicola_usuario1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
+  CONSTRAINT `fk_acuicola_usuario1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `especie`
+-- Table structure for table `especies`
 --
 
-DROP TABLE IF EXISTS `especie`;
+DROP TABLE IF EXISTS `especies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `especie` (
+CREATE TABLE `especies` (
   `id_especie` int NOT NULL,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id_especie`)
@@ -59,15 +59,15 @@ DROP TABLE IF EXISTS `estanques`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `estanques` (
-  `id_estanques` varchar(5) NOT NULL,
+  `id_estanque` int NOT NULL AUTO_INCREMENT,
   `id_especie` int NOT NULL,
-  `tipo_estanques` varchar(255) NOT NULL,
+  `tipo_estanque` varchar(255) NOT NULL,
   `cantidad_peces` int DEFAULT '0',
-  PRIMARY KEY (`id_estanques`),
-  KEY `fk_id_estanques_idx` (`id_estanques`),
+  PRIMARY KEY (`id_estanque`),
+  KEY `fk_id_estanques_idx` (`id_estanque`),
   KEY `fk_estanques_especie1_idx` (`id_especie`),
-  CONSTRAINT `fk_estanques_especie1` FOREIGN KEY (`id_especie`) REFERENCES `especie` (`id_especie`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `fk_estanques_especie1` FOREIGN KEY (`id_especie`) REFERENCES `especies` (`id_especie`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,22 +78,22 @@ DROP TABLE IF EXISTS `historia_oxigeno`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `historia_oxigeno` (
-  `id_estanques` varchar(5) NOT NULL,
+  `id_estanques` int NOT NULL,
   `Nivel_oxigenacion` double NOT NULL,
   `fecha_hora_medicion` datetime NOT NULL,
   KEY `fk_historia_oxigeno_estanques_idx` (`id_estanques`),
-  CONSTRAINT `fk_historia_oxigeno_estanques` FOREIGN KEY (`id_estanques`) REFERENCES `estanques` (`id_estanques`)
+  CONSTRAINT `fk_id_estanque` FOREIGN KEY (`id_estanques`) REFERENCES `estanques` (`id_estanque`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `usuario`
+-- Table structure for table `usuarios`
 --
 
-DROP TABLE IF EXISTS `usuario`;
+DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `usuario` (
+CREATE TABLE `usuarios` (
   `id_usuario` int NOT NULL,
   `rol` varchar(50) NOT NULL,
   `nombre` varchar(255) NOT NULL,
@@ -116,4 +116,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-02 22:04:02
+-- Dump completed on 2023-12-03 19:41:31
