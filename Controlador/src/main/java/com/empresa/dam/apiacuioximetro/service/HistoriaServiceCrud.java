@@ -1,6 +1,7 @@
 package com.empresa.dam.apiacuioximetro.service;
 
 import com.empresa.dam.apiacuioximetro.entity.HistoriaOxigeno;
+import com.empresa.dam.apiacuioximetro.exceptions.DataNotFound;
 import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
 import com.empresa.dam.apiacuioximetro.repository.HistoriaNivelRepository;
 import lombok.NoArgsConstructor;
@@ -59,7 +60,9 @@ public class HistoriaServiceCrud {
      * @return List<HistoriaOxigeno> - Lista de los últimos 5 objetos
      *         HistoriaOxigeno
      */
-    public List<HistoriaOxigeno> findLasFive() {
-        return this.repository.findLastFive();
+    public List<HistoriaOxigeno> findLasFive() throws DataNotFound {
+        List<HistoriaOxigeno> historiaOxigenoList = this.repository.findLastFive();
+        if (historiaOxigenoList.isEmpty()) throw new DataNotFound("HistoriaOxigeno");
+        return historiaOxigenoList;
     }
 }

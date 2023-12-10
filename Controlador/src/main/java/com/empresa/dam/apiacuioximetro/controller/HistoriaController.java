@@ -1,6 +1,7 @@
 package com.empresa.dam.apiacuioximetro.controller;
 
 import com.empresa.dam.apiacuioximetro.entity.HistoriaOxigeno;
+import com.empresa.dam.apiacuioximetro.exceptions.DataNotFound;
 import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
 import com.empresa.dam.apiacuioximetro.service.HistoriaServiceCrud;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,7 +62,7 @@ public class HistoriaController {
      *         oxigeno registrados.
      */
     @GetMapping("/five")
-    public List<HistoriaOxigeno> findLastFive() {
+    public List<HistoriaOxigeno> findLastFive() throws DataNotFound {
         return this.serviceCrud.findLasFive();
     }
 }

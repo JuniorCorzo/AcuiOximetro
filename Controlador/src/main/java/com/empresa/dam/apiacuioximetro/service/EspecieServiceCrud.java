@@ -21,12 +21,4 @@ public class EspecieServiceCrud {
     public Especies findById(int id) throws DataNotFoundById {
         return repository.findById(id).orElseThrow(() -> new DataNotFoundById("Especie", id));
     }
-
-    public void create(Especies especie){
-        repository.save(especie);
-    }
-
-    public void delete(int id){
-        repository.deleteById(id);
-    }
 }
