@@ -1,18 +1,36 @@
 package com.empresa.dam.apiacuioximetro.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+import lombok.NoArgsConstructor;
 
-@Table("acuicolas")
-public record Acuicolas(
-        @Column("id_acuicola") @Id @NotNull int idAcuicola,
-        @Column("nombre") @NotNull String nombre,
-        @Column("direccion") @NotNull String direccion,
-        @Column("id_usuario") @NotNull int idUsuario,
-        @Column("id_estanque") @NotNull int idEstanque
-) {
+@Entity
+@Table(name ="Acuicolas")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Acuicolas {
+    @Column(name = "id_acuicola")
+    @Id
+    @NotNull
+    private int idAcuicola;
+    @Column(name = "nombre")
+    @NotNull
+    private String nombre;
+    @Column(name = "direccion")
+    @NotNull
+    private String direccion;
+    @Column(name = "id_usuario")
+    @NotNull
+    private int idUsuario;
+    @Column(name = "id_estanque")
+    @NotNull
+    private int idEstanque;
 }

@@ -1,14 +1,23 @@
 package com.empresa.dam.apiacuioximetro.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Normalized;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+import lombok.Data;
 
-
-@Table("especies")
-public record Especies(@Id @Column("id_especie") @NotNull int id,
-                      @Column("nombre") @NotNull @NotEmpty String nombre) {
+@Entity
+@Table(name = "especies")
+@Data
+public class Especies {
+    @Id
+    @Column(name = "id_especie")
+    @NotNull
+    private int id;
+    @Column(name = "nombre")
+    @NotNull
+    @NotEmpty
+    private String nombre;
 }

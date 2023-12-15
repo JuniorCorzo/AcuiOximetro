@@ -21,7 +21,7 @@ public interface UsuarioRepository extends ListCrudRepository<Usuarios, Integer>
             " usuarios.`nombre`, usuarios.`apellido`, usuarios.`correo`," +
             " usuarios.`clave`) VALUES (:id_usuario, :rol, :nombre, :apellido, :correo, :clave)")
     @Transactional
-    void create(@Param("id_usuario") int id_usuario, @Param("rol") String rol,
+    Usuarios create(@Param("id_usuario") int id_usuario, @Param("rol") String rol,
                 @Param("nombre") String nombre, @Param("apellido") String apellido,
                 @Param("correo") String correo, @Param("clave") String clave);
 }
