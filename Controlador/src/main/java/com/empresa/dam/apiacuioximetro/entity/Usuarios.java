@@ -1,36 +1,64 @@
 package com.empresa.dam.apiacuioximetro.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.EqualsAndHashCode;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "usuarios")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Usuarios {
+    // Identificador único del usuario.
+    @Id
+    @Column(name = "id_usuario")
+    @NotNull
+    private int idUsuario;
 
-@Table("usuarios")
-public record Usuarios(
-        // Identificador único del usuario.
-        @Id @Column("id_usuario") @NotNull int idUsuario,
+    // Rol del usuario en el sistema.
 
-        // Rol del usuario en el sistema.
+    @Column(name = "rol")
+    @NotNull
+    @NotEmpty
+    private String rol;
 
-        @Column("rol") @NotNull @NotEmpty String rol,
+    // Nombre del usuario.
 
-        // Nombre del usuario.
+    @Column(name = "nombre")
+    @NotNull
+    @NotEmpty
+    private String nombre;
 
-        @Column("nombre") @NotNull @NotEmpty String nombre,
+    // Apellido del usuario.
+    @Column(name = "apellido")
+    @NotNull
+    @NotEmpty
+    private String apellido;
 
-        // Apellido del usuario.
-        @Column("apellido") @NotNull @NotEmpty String apellido,
+    // Correo electrónico del usuario.
 
-        // Correo electrónico del usuario.
+    @Column(name = "correo")
+    @NotNull
+    @NotEmpty
+    @Email
+    private String correo;
 
-        @Column("correo") @NotNull @NotEmpty @Email String correo,
+    // Clave de acceso del usuario.
 
-        // Clave de acceso del usuario.
-
-        @Column("clave") @NotNull @NotEmpty String clave,
-        @Column("token") String token) {
+    @Column(name = "clave")
+    @NotNull
+    @NotEmpty
+    private String clave;
+    @Column(name = "token")
+    private String token;
 }

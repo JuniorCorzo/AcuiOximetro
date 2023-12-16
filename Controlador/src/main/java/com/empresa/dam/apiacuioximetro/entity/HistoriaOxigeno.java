@@ -1,10 +1,14 @@
 package com.empresa.dam.apiacuioximetro.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import lombok.EqualsAndHashCode;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -15,8 +19,21 @@ import java.util.Date;
  * La anotación @Id indica que el atributo que le sigue es la clave primaria de
  * la tabla.
  */
-@Table("historia_oxigeno")
-public record HistoriaOxigeno(@Id @Column("id_estanques") @NotNull int idEstanque,
-        @Column("nivel_oxigenacion") @NotNull double nivelOxigenacion,
-        @Column("fecha_hora_medicion") @NotNull Date fechaMedicion) {
+@Entity
+@Table(name = "historia_oxigeno")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class HistoriaOxigeno {
+    @Id
+    @Column(name = "id_estanques")
+    @NotNull
+    private int idEstanque;
+    @Column(name = "nivel_oxigenacion")
+    @NotNull
+    private double nivelOxigenacion;
+    @Column(name = "fecha_hora_medicion")
+    @NotNull
+    private Date fechaMedicion;
 }
