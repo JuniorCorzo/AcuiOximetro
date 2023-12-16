@@ -51,24 +51,24 @@ public class EstanquesServiceCrud {
     /**
      * Inserta un nuevo usuario a la base de datos en la entidad Estanques
      *
-     * @param entity - Objecto que almacena los datos necesarios de la entidad
+     * @param estanque - Objecto que almacena los datos necesarios de la entidad
      *               estanques
      */
-    public void create(Estanques entity) {
-        this.repository.save(entity);
+    public void create(Estanques estanque) {
+        this.repository.save(estanque);
     }
 
     /**
      * Actualiza la informacion de la entidad estanques
      *
-     * @param entity - Objecto que alamacena los datos necesarios de la entidad
+     * @param estanque - Objecto que alamacena los datos necesarios de la entidad
      *               estanques
      * @throws RuntimeException - Si no exite el id
      */
-    public void update(Estanques entity) throws DataNotFoundById {
-        if (!this.repository.existsById(Integer.valueOf(entity.id())))
-            throw new DataNotFoundById("Estanques", Integer.parseInt(entity.id()));
-        this.repository.save(entity);
+    public void update(Estanques estanque) throws DataNotFoundById {
+        if (!this.repository.existsById(Integer.valueOf(estanque.getId())))
+            throw new DataNotFoundById("Estanques", Integer.parseInt(estanque.getId()));
+        this.repository.save(estanque);
     }
 
     /**

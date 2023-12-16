@@ -41,32 +41,29 @@ public class UsuarioServiceCrud {
      * @return true si las credenciales son válidas, false en caso contrario.
      */
     public Boolean validate(String correo, String clave) throws CredentialsNotValid {
-        if (this.repository.findByCorreoAndClave(correo, clave) == null)
-            throw new CredentialsNotValid();
+        if (this.repository.findByCorreoAndClave(correo, clave) == null) throw new CredentialsNotValid();
         return true;
     }
 
     /**
      * Crea un nuevo usuario.
      *
-     * @param entity El usuario a crear.
+     * @param users El usuario a crear.
      */
-    public void create(Usuarios entity) throws UserExist {
-        if (this.repository.existsById(entity.idUsuario())) throw new UserExist(entity.idUsuario());
-        this.repository.create(entity.idUsuario(), entity.rol(), entity.nombre(), entity.apellido(), entity.correo(),
-                entity.clave());
+    public void create(Usuarios users) throws UserExist {
+        if (this.repository.existsById(users.getIdUsuario())) throw new UserExist(users.getIdUsuario());
+        this.repository.save(users);
     }
 
     /**
      * Actualiza un usuario existente.
      *
-     * @param entity El usuario a actualizar.
+     * @param users El usuario a actualizar.
      * @throws RuntimeException si el usuario no existe.
      */
-    public void update(Usuarios entity) throws UserNotExist {
-        if (!repository.existsById(entity.idUsuario()))
-            throw new UserNotExist(entity.idUsuario());
-        repository.save(entity);
+    public void update(Usuarios users) throws UserNotExist {
+        if (!repository.existsById(users.getIdUsuario())) throw new UserNotExist(users.getIdUsuario());
+        repository.save(users);
     }
 
 }
