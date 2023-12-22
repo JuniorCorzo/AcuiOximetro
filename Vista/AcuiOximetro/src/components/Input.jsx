@@ -1,13 +1,13 @@
-import React from "react";
-import { useFonts } from "expo-font";
-import { View, TextInput, StyleSheet } from "react-native";
+import React from 'react'
+import { useFonts } from 'expo-font'
+import { View, TextInput, StyleSheet } from 'react-native'
 
 const inputText = ({ placeholder, secure }) => {
   const [fontsLoaded] = useFonts({
-    "HindVadodara-Medium": require("../assets/fonts/HindVadodara-Medium.ttf"),
-  });
+    'HindVadodara-Medium': require('../../assets/fonts/HindVadodara-Medium.ttf')
+  })
 
-  if (!fontsLoaded) return null;
+  if (!fontsLoaded) return null
 
   return (
     <View>
@@ -17,19 +17,19 @@ const inputText = ({ placeholder, secure }) => {
         secureTextEntry={secure}
       />
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   input: {
     width: 340,
     paddingLeft: 8,
     height: 50,
-    borderColor: "black",
+    borderColor: 'black',
     borderWidth: 1,
     borderRadius: 5,
-    fontFamily: "HindVadodara-Medium"
-  },
-});
+    fontFamily: 'HindVadodara-Medium'
+  }
+})
 
-export default inputText;
+export default inputText
