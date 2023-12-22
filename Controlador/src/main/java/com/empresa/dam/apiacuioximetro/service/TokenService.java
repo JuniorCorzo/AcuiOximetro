@@ -13,16 +13,16 @@ import java.util.stream.Collectors;
 
 @Service
 public class TokenService {
-    private final JwtEncoder jwtEncoder;
+   // private final JwtEncoder jwtEncoder;
 
     /**
      * Constructor de la clase TokenService.
      * @param jwtEncoder Encoder utilizado para generar el token.
      */
-    public TokenService(JwtEncoder jwtEncoder) {
+   /* public TokenService(JwtEncoder jwtEncoder) {
         this.jwtEncoder = jwtEncoder;
     }
-
+*/
     /**
      * Genera un token JWT a partir de la autenticación proporcionada.
      * @param authentication Autenticación del usuario.
@@ -42,7 +42,8 @@ public class TokenService {
                 .claim("scope", scope)
                 .build();
 
-        return this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+        return null;
+        //return this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
     }
 
 }
