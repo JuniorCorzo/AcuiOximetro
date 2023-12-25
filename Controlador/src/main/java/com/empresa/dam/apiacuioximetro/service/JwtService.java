@@ -7,7 +7,7 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.security.Key;
+import javax.crypto.SecretKey;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -17,11 +17,9 @@ import java.util.Map;
 public class JwtService {
     @Value("${security.jwt.secret-key}")
     private String SECRET_KEY;
-    public String generateToken(Usuarios usuario, Map<String, Object> extraClaims){
+
+    public String generateToken(Usuarios usuario, Map<String, Object> extraClaims) {
         Instant now = Instant.now();
-        System.out.println(now);
-
-
         return Jwts.builder()
                 .claims(extraClaims)
                 .subject(usuario.getNombre())
@@ -34,8 +32,17 @@ public class JwtService {
                 .compact();
     }
 
-    private Key generateKey(){
+    private SecretKey generateKey() {
         byte[] secretAsByte = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(secretAsByte);
+    }
+
+    public String extractUsername(String jwt) {
+        return Jwts.parser()
+                .verifyWith(generateKey()) //Con esto se verifica que el token sea firmado con nuestra llave
+                .build()//Retorna JwtParser
+                .parseSignedClaims(jwt)
+                .getPayload()
+                .getSubject();
     }
 }
