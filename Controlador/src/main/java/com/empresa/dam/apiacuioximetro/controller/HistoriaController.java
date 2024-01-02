@@ -39,7 +39,7 @@ public class HistoriaController {
      */
     @GetMapping
     public List<HistoriaOxigeno> findAll() {
-        return serviceCrud.findAll();
+        return serviceCrud.getAll();
     }
 
     /**
@@ -51,7 +51,7 @@ public class HistoriaController {
      */
     @GetMapping("/{id}")
     public List<HistoriaOxigeno> findById(@PathVariable int id) throws DataNotFoundById {
-        return this.serviceCrud.findById(id);
+        return this.serviceCrud.getByIdEstanques(id);
     }
 
     /**

@@ -1,29 +1,28 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import {
   View,
   Text,
-  Image,
   TouchableHighlight,
   TouchableOpacity,
-  StyleSheet,
-} from "react-native";
-import Icons from "@expo/vector-icons/FontAwesome";
-import { useFonts } from "expo-font";
+  StyleSheet
+} from 'react-native'
+import Icons from '@expo/vector-icons/FontAwesome'
+import { useFonts } from 'expo-font'
 
-const MenuUsuario = ({ nombre, isAdmin }) => {
-  const [rotacion, setRotacion] = useState(0);
-  const [visible, setVisible] = useState(false);
+const MenuUsuario = ({ nombre, isAdmin, navigation }) => {
+  const [rotacion, setRotacion] = useState(0)
+  const [visible, setVisible] = useState(false)
 
   const [fontsLoaded] = useFonts({
-    "Poppins-Medium": require("../assets/fonts/Poppins-Medium.ttf"),
-    "HindVadodara-Medium": require("../assets/fonts/HindVadodara-Medium.ttf"),
-  });
-  if (!fontsLoaded) return null;
+    'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
+    'HindVadodara-Medium': require('../../assets/fonts/HindVadodara-Medium.ttf')
+  })
+  if (!fontsLoaded) return null
 
   const tocarMenu = () => {
-    setRotacion(rotacion === 90 ? 0 : 90);
-    setVisible(!visible);
-  };
+    setRotacion(rotacion === 90 ? 0 : 90)
+    setVisible(!visible)
+  }
 
   const renderAdmin = () => {
     if (isAdmin) {
@@ -31,9 +30,9 @@ const MenuUsuario = ({ nombre, isAdmin }) => {
         <TouchableHighlight style={styles.opciones}>
           <Text style={styles.textOpciones}>Crear Nuevo Usuario</Text>
         </TouchableHighlight>
-      );
+      )
     }
-  };
+  }
 
   const renderMenu = () => {
     if (visible) {
@@ -43,19 +42,23 @@ const MenuUsuario = ({ nombre, isAdmin }) => {
             <Text style={styles.textOpciones}>Opciones de Cuenta</Text>
           </TouchableHighlight>
           {renderAdmin()}
-          <TouchableHighlight>
+          <TouchableHighlight
+            onPress={() => {
+              navigation.navigate('Login')
+            }}
+          >
             <Text style={styles.textOpciones}>Cerrar Sesión</Text>
           </TouchableHighlight>
         </View>
-      );
+      )
     }
-  };
+  }
 
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.menu} onPress={tocarMenu}>
         <Icons
-          name="chevron-right"
+          name='chevron-right'
           style={{ transform: [{ rotate: `${rotacion}deg` }] }}
           size={20}
         />
@@ -63,12 +66,12 @@ const MenuUsuario = ({ nombre, isAdmin }) => {
       </TouchableOpacity>
       <View>{renderMenu()}</View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
-    width: "85%",
+    width: '85%',
     borderBottomWidth: 1,
     borderRightWidth: 1,
     borderTopRightRadius: 10,
@@ -76,33 +79,33 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     paddingTop: 5,
     paddingBottom: 20,
-    paddingRight: 10,
+    paddingRight: 10
   },
   menu: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginLeft: 15,
-    gap: 20,
+    gap: 20
   },
   text: {
-    fontFamily: "Poppins-Medium",
-    fontSize: 20,
+    fontFamily: 'Poppins-Medium',
+    fontSize: 20
   },
   menuOpciones: {
     marginTop: 20,
-    alignItems: "center",
-    gap: 10,
+    alignItems: 'center',
+    gap: 10
   },
   opciones: {
-    width: "93%",
+    width: '93%',
     paddingBottom: 20,
-    borderBottomWidth: 1,
+    borderBottomWidth: 1
   },
   textOpciones: {
     paddingTop: 10,
-    textAlign: "center",
-    fontFamily: "HindVadodara-Medium",
-    fontSize: 15,
-  },
-});
-export default MenuUsuario;
+    textAlign: 'center',
+    fontFamily: 'HindVadodara-Medium',
+    fontSize: 15
+  }
+})
+export default MenuUsuario

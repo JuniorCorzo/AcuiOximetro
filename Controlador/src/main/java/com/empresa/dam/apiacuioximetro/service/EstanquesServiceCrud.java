@@ -66,8 +66,8 @@ public class EstanquesServiceCrud {
      * @throws RuntimeException - Si no exite el id
      */
     public void update(Estanques estanque) throws DataNotFoundById {
-        if (!this.repository.existsById(Integer.valueOf(estanque.getId())))
-            throw new DataNotFoundById("Estanques", Integer.parseInt(estanque.getId()));
+        if (!this.repository.existsById(estanque.getId()))
+            throw new DataNotFoundById("Estanques", estanque.getId());
         this.repository.save(estanque);
     }
 

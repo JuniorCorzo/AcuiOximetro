@@ -1,21 +1,23 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { useFonts } from 'expo-font';
-import { StyleSheet, View } from 'react-native';
-import Login from './screens/Login';
-import Inicio from './screens/Inicio';
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import { StatusBar } from 'expo-status-bar'
 
-export default function App() {
+import Login from './src/screens/Login'
+import Inicio from './src/screens/Inicio'
+import EstanqueDetalles from './src/screens/EstanqueDetalles'
 
+const Stack = createStackNavigator()
 
+export default function App () {
   return (
-    <View>
-      <Inicio />
-      <StatusBar style="auto" />
-    </View>
-  );
+    <NavigationContainer>
+      <StatusBar style='auto' />
+      <Stack.Navigator>
+        <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
+        <Stack.Screen name='Inicio' component={Inicio} options={{ headerShown: false }} />
+        <Stack.Screen name='EstanqueDetalles' component={EstanqueDetalles} options={{ headerShown: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
-
-const styles = StyleSheet.create({
-
-});

@@ -1,15 +1,15 @@
 package com.empresa.dam.apiacuioximetro.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+import jakarta.annotation.Nullable;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -27,13 +27,20 @@ import java.util.Date;
 @AllArgsConstructor
 public class HistoriaOxigeno {
     @Id
+    @Column(name = "id_nivel")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idNivel;
+
     @Column(name = "id_estanques")
     @NotNull
     private int idEstanque;
+
     @Column(name = "nivel_oxigenacion")
     @NotNull
     private double nivelOxigenacion;
+
     @Column(name = "fecha_hora_medicion")
     @NotNull
     private Date fechaMedicion;
+
 }

@@ -4,7 +4,6 @@ import com.empresa.dam.apiacuioximetro.entity.Estanques;
 import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
 import com.empresa.dam.apiacuioximetro.service.EstanquesServiceCrud;
 import jakarta.validation.Valid;
-import lombok.SneakyThrows;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/estanques")
+@CrossOrigin(origins = "*")
 public class EstanquesController {
     private final EstanquesServiceCrud serviceCrud;
 

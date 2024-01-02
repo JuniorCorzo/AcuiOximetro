@@ -34,7 +34,8 @@ public class HistoriaServiceCrud {
      * 
      * @return List<HistoriaOxigeno> - Lista de objetos HistoriaOxigeno
      */
-    public List<HistoriaOxigeno> findAll() {
+    @Deprecated
+    public List<HistoriaOxigeno> getAll() {
         return this.repository.findAll();
     }
 
@@ -46,8 +47,8 @@ public class HistoriaServiceCrud {
      * proporcionado
      * @throws RuntimeException - Si no existe el id
      */
-    public List<HistoriaOxigeno> findById(int id) throws DataNotFoundById {
-        List<HistoriaOxigeno> historiaOxigenoList = this.repository.findAllById(Collections.singleton(id));
+    public List<HistoriaOxigeno> getByIdEstanques(int id) throws DataNotFoundById {
+        List<HistoriaOxigeno> historiaOxigenoList = this.repository.findAllByIdEstanque(id);
         if (historiaOxigenoList.isEmpty()) {
             throw new DataNotFoundById("HistoriaOxigeno", id);
         }

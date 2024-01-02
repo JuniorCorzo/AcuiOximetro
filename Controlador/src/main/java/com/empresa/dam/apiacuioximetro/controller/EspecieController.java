@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/v1/especies")
 public class EspecieController {
     private final EspecieServiceCrud serviceCrud;
+
+    @Autowired
     public EspecieController(EspecieServiceCrud serviceCrud) {
         this.serviceCrud = serviceCrud;
     }
