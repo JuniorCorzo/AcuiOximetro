@@ -14,12 +14,16 @@ import java.util.Map;
 
 @Service
 public class AuthenticationService {
+    private final AuthenticationManager authenticationManager;
+    private final UsuarioRepository usuarioRepository;
+    private final JwtService jwtService;
+
     @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-    @Autowired
-    private JwtService jwtService;
+    public AuthenticationService(AuthenticationManager authenticationManager, UsuarioRepository usuarioRepository, JwtService jwtService) {
+        this.authenticationManager = authenticationManager;
+        this.usuarioRepository = usuarioRepository;
+        this.jwtService = jwtService;
+    }
 
     public AuthenticationResponse login(AuthenticationRequest authRequest) {
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(authRequest.getNombre(), authRequest.getClave());

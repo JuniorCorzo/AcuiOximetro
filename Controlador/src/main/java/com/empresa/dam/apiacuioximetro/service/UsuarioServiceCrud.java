@@ -40,6 +40,8 @@ public class UsuarioServiceCrud {
      * @param clave  La contraseña del usuario.
      * @return true si las credenciales son válidas, false en caso contrario.
      */
+   //Se eliminara
+    @Deprecated
     public Boolean validate(String correo, String clave) throws CredentialsNotValid {
         if (this.repository.findByCorreoAndClave(correo, clave) == null) throw new CredentialsNotValid();
         return true;

@@ -1,14 +1,13 @@
 package com.empresa.dam.apiacuioximetro.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 
 /**
@@ -31,8 +30,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Estanques {
     @Id
-    @Column(name = "id_estanque")
-    String id;
+    @Column(name = "id_estanques")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @Column(name = "id_especie")
     private int idEspecie;
     @Column(name = "tipo_estanque")
@@ -40,4 +40,5 @@ public class Estanques {
     private String tipoEstanque;
     @Column(name = "cantidad_peces")
     private int cantidadPeces;
+
 }

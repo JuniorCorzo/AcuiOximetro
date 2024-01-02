@@ -46,7 +46,7 @@ public class SecurityBeansInjector {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> {
-            return this.userRepository.findByNombre(username).orElseThrow(() -> new RuntimeException("Usuario no existe"));
+            return this.userRepository.findByNombre(username).get();
         };
     }
 }

@@ -34,7 +34,6 @@ public class Usuarios implements UserDetails {
 
     @Column(name = "rol")
     @NotNull
-    @NotEmpty
     @Enumerated(EnumType.STRING)
     private Role rol;
 
