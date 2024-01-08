@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -61,7 +60,7 @@ public class HistoriaServiceCrud {
      * @return List<HistoriaOxigeno> - Lista de los últimos 5 objetos
      *         HistoriaOxigeno
      */
-    public List<HistoriaOxigeno> findLasFive() throws DataNotFound {
+    public List<HistoriaOxigeno> getLastFive() throws DataNotFound {
         List<HistoriaOxigeno> historiaOxigenoList = this.repository.findLastFive();
         if (historiaOxigenoList.isEmpty()) throw new DataNotFound("HistoriaOxigeno");
         return historiaOxigenoList;

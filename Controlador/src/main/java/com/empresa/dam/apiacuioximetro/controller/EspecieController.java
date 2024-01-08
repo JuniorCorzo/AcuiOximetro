@@ -18,6 +18,6 @@ public class EspecieController {
 
     @GetMapping("/{id}")
     public Especies findById(@PathVariable int id) throws DataNotFoundById {
-        return this.serviceCrud.findById(id);
+        return this.serviceCrud.getById(id);
     }
 }

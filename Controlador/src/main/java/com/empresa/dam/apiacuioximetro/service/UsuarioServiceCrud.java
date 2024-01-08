@@ -29,7 +29,7 @@ public class UsuarioServiceCrud {
      * @param id El ID del usuario a buscar.
      * @return El usuario con el ID especificado, o null si no se encuentra.
      */
-    public Usuarios findById(int id) throws UserNotExist {
+    public Usuarios getById(int id) throws UserNotExist {
         return repository.findById(id).orElseThrow(() -> new UserNotExist(id));
     }
 
@@ -51,21 +51,22 @@ public class UsuarioServiceCrud {
      * Crea un nuevo usuario.
      *
      * @param users El usuario a crear.
+     * @return
      */
-    public void create(Usuarios users) throws UserExist {
+    public Usuarios create(Usuarios users) throws UserExist {
         if (this.repository.existsById(users.getIdUsuario())) throw new UserExist(users.getIdUsuario());
-        this.repository.save(users);
+        return this.repository.save(users);
     }
 
     /**
      * Actualiza un usuario existente.
      *
      * @param users El usuario a actualizar.
+     * @return
      * @throws RuntimeException si el usuario no existe.
      */
-    public void update(Usuarios users) throws UserNotExist {
+    public Usuarios update(Usuarios users) throws UserNotExist {
         if (!repository.existsById(users.getIdUsuario())) throw new UserNotExist(users.getIdUsuario());
-        repository.save(users);
+        return this.repository.save(users);
     }
-
 }

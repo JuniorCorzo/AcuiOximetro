@@ -38,8 +38,8 @@ public class UsuarioController {
      * @return Objeto Usuario correspondiente al ID proporcionado.
      */
     @GetMapping("/{id}")
-    public Usuarios findById(@PathVariable int id) throws UserNotExist {
-        return this.serviceCrud.findById(id);
+    public Usuarios getById(@PathVariable int id) throws UserNotExist {
+        return this.serviceCrud.getById(id);
     }
 
     /**
@@ -50,6 +50,7 @@ public class UsuarioController {
      * @return Booleano que indica si las credenciales son válidas o no.
      */
     @GetMapping("/validate")
+    @Deprecated
     public Boolean validatedUsuario(@RequestParam("correo") String correo, @RequestParam("clave") String clave) throws CredentialsNotValid {
         return this.serviceCrud.validate(correo, clave);
     }

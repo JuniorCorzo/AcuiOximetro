@@ -20,7 +20,7 @@ public class AcuicolaController {
     }
 
     @GetMapping("/{id}")
-    public Acuicolas findById(@PathVariable int id) throws DataNotFoundById {
-        return this.serviceCrud.findById(id);
+    public Acuicolas getById(@PathVariable int id) throws DataNotFoundById {
+        return this.serviceCrud.getById(id);
     }
 }

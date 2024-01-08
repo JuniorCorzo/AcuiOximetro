@@ -18,7 +18,7 @@ public class EspecieServiceCrud {
         this.repository = repository;
     }
 
-    public Especies findById(int id) throws DataNotFoundById {
-        return repository.findById(id).orElseThrow(() -> new DataNotFoundById("Especie", id));
+    public Especies getById(int id) throws DataNotFoundById {
+        return this.repository.findById(id).orElseThrow(() -> new DataNotFoundById("Especie", id));
     }
 }

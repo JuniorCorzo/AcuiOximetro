@@ -16,7 +16,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/estanques")
-@CrossOrigin(origins = "*")
 public class EstanquesController {
     private final EstanquesServiceCrud serviceCrud;
 
@@ -37,7 +36,7 @@ public class EstanquesController {
      */
     @GetMapping
     public List<Estanques> findAll() {
-        return this.serviceCrud.findAll();
+        return this.serviceCrud.getAll();
     }
 
     /**

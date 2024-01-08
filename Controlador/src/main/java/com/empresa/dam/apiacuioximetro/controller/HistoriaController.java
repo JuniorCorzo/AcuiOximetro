@@ -38,6 +38,7 @@ public class HistoriaController {
      * @return lista de objetos HistoriaOxigeno.
      */
     @GetMapping
+    @Deprecated
     public List<HistoriaOxigeno> findAll() {
         return serviceCrud.getAll();
     }
@@ -63,6 +64,6 @@ public class HistoriaController {
      */
     @GetMapping("/five")
     public List<HistoriaOxigeno> findLastFive() throws DataNotFound {
-        return this.serviceCrud.findLasFive();
+        return this.serviceCrud.getLastFive();
     }
 }
