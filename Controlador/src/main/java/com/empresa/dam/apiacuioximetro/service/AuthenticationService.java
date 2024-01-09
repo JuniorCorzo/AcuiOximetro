@@ -29,7 +29,7 @@ public class AuthenticationService {
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(authRequest.getNombre(), authRequest.getClave());
 
         authenticationManager.authenticate(authToken);
-
+        //No usar UsuarioRepository usar mejor UsuarioService
         Usuarios usuario = usuarioRepository.findByNombre(authRequest.getNombre()).get();
 
         String jwt = jwtService.generateToken(usuario, generateExtraClaims(usuario));

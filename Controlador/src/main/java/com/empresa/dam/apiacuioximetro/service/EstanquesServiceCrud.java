@@ -31,7 +31,7 @@ public class EstanquesServiceCrud {
      * @return List<Estanques> - lista de objetos Estanques que contiene todos los
      * datos almacenados en la base de datos
      */
-    public List<Estanques> findAll() {
+    public List<Estanques> getAll() {
         return this.repository.findAll();
     }
 
@@ -43,7 +43,7 @@ public class EstanquesServiceCrud {
      * @return devuelve un objecto de estanques con todos los datos de la fila
      * @throws RuntimeException - Si no exite el id
      */
-    public Estanques findById(int id) throws DataNotFoundById {
+    public Estanques getById(int id) throws DataNotFoundById {
         return this.repository.findById(id)
                 .orElseThrow(() -> new DataNotFoundById("Estanques", id));
     }
@@ -52,23 +52,25 @@ public class EstanquesServiceCrud {
      * Inserta un nuevo usuario a la base de datos en la entidad Estanques
      *
      * @param estanque - Objecto que almacena los datos necesarios de la entidad
-     *               estanques
+     *                 estanques
+     * @return
      */
-    public void create(Estanques estanque) {
-        this.repository.save(estanque);
+    public Estanques create(Estanques estanque) {
+        return this.repository.save(estanque);
     }
 
     /**
      * Actualiza la informacion de la entidad estanques
      *
      * @param estanque - Objecto que alamacena los datos necesarios de la entidad
-     *               estanques
+     *                 estanques
+     * @return
      * @throws RuntimeException - Si no exite el id
      */
-    public void update(Estanques estanque) throws DataNotFoundById {
+    public Estanques update(Estanques estanque) throws DataNotFoundById {
         if (!this.repository.existsById(estanque.getId()))
             throw new DataNotFoundById("Estanques", estanque.getId());
-        this.repository.save(estanque);
+        return this.repository.save(estanque);
     }
 
     /**

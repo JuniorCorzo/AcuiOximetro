@@ -3,11 +3,15 @@ package com.empresa.dam.apiacuioximetro.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "especies")
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Builder
 public class Especies {
@@ -20,4 +24,5 @@ public class Especies {
     @NotNull
     @NotEmpty
     private String nombre;
+
 }

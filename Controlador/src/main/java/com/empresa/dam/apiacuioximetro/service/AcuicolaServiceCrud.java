@@ -16,7 +16,7 @@ public class AcuicolaServiceCrud {
         this.repository = repository;
     }
 
-    public Acuicolas findById(int id) throws DataNotFoundById {
+    public Acuicolas getById(int id) throws DataNotFoundById {
         return this.repository.findById(id).orElseThrow(() -> new DataNotFoundById("Acuicolas", id));
     }
 }
