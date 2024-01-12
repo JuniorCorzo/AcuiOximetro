@@ -13,6 +13,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
@@ -23,11 +28,12 @@ public class HttpSecurityConfig {
     @Autowired
     private AuthenticationProvider authenticationProvider;
     @Autowired
-    JwtAuthenticationFilter authenticationFilter;
+    private JwtAuthenticationFilter authenticationFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors((cors) -> cors.configurationSource(corsConfiguration()))
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sessionMangConfig -> sessionMangConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
@@ -38,6 +44,17 @@ public class HttpSecurityConfig {
 
                     authConfig.anyRequest().authenticated();
                 });
-        return http.build();
+        return http
+                .build();
+    }
+
+    CorsConfigurationSource corsConfiguration(){
+        CorsConfiguration corsConfig = new CorsConfiguration();
+        corsConfig.setAllowedOrigins(List.of("*"));
+        corsConfig.setAllowedMethods(List.of("GET","PUT", "POST", "DELETE"));
+        corsConfig.setAllowedHeaders(List.of("*"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfig);
+        return source;
     }
 }
