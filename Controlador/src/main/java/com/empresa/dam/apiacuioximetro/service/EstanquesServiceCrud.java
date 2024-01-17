@@ -31,8 +31,8 @@ public class EstanquesServiceCrud {
      * @return List<Estanques> - lista de objetos Estanques que contiene todos los
      * datos almacenados en la base de datos
      */
-    public List<Estanques> getAll() {
-        return this.repository.findAll();
+    public List<Estanques> getAllByAcuicola(int idAcuicola) {
+        return this.repository.findAllByIdAcuicola(idAcuicola);
     }
 
     /**

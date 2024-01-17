@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.List;
 
@@ -33,11 +34,19 @@ public class Estanques {
     @Column(name = "id_estanques")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "id_acuicola")
+    @NotNull
+    private int idAcuicola;
+
     @Column(name = "id_especie")
+    @NotNull
     private int idEspecie;
+
     @Column(name = "tipo_estanque")
     @NotNull
     private String tipoEstanque;
+
     @Column(name = "cantidad_peces")
     private int cantidadPeces;
 

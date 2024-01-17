@@ -30,8 +30,8 @@ class EstanquesServiceCrudTest {
     void EstanqueService_getAllEstanques_ReturnAllEstanques(){
         List<Estanques> estanques = Collections.emptyList();
 
-        when(this.estanquesRepository.findAll()).thenReturn(estanques);
-        List<Estanques> getEstanques = this.estanquesService.getAll();
+        when(this.estanquesRepository.findAllByIdAcuicola(Mockito.anyInt())).thenReturn(estanques);
+        List<Estanques> getEstanques = this.estanquesService.getAllByAcuicola(1);
 
         Assertions.assertNotNull(getEstanques);
     }

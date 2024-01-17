@@ -34,9 +34,9 @@ public class EstanquesController {
      * 
      * @return List<Estanques>
      */
-    @GetMapping
-    public List<Estanques> findAll() {
-        return this.serviceCrud.getAll();
+    @GetMapping("/{idAcuicola}")
+    public List<Estanques> findAll(@PathVariable int idAcuicola) {
+        return this.serviceCrud.getAllByAcuicola(idAcuicola);
     }
 
     /**

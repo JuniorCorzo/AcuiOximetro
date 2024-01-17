@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -70,8 +71,8 @@ public class EstanqueControllerTest {
 
     @Test
     void EstanquesController_GetAllEstanque_ReturnsAllEstanques() throws Exception {
-        when(estanqueService.getAll()).thenReturn(List.of(estanque));
-        mockMvc.perform((get("/api/v1/estanques"))
+        when(estanqueService.getAllByAcuicola(Mockito.anyInt())).thenReturn(List.of(estanque));
+        mockMvc.perform((get("/api/v1/estanques/1"))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
