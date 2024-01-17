@@ -82,7 +82,6 @@ public class Usuarios implements UserDetails {
     }
 
     @JsonIgnoreProperties
-    @Override
     public String getPassword() {
         return password;
     }

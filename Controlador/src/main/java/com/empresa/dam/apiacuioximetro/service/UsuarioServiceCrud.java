@@ -1,7 +1,6 @@
 package com.empresa.dam.apiacuioximetro.service;
 
 import com.empresa.dam.apiacuioximetro.entity.Usuarios;
-import com.empresa.dam.apiacuioximetro.exceptions.usuario.CredentialsNotValid;
 import com.empresa.dam.apiacuioximetro.exceptions.usuario.UserExist;
 import com.empresa.dam.apiacuioximetro.exceptions.usuario.UserNotExist;
 import com.empresa.dam.apiacuioximetro.repository.UsuarioRepository;

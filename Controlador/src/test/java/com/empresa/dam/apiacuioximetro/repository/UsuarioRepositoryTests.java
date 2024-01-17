@@ -52,7 +52,7 @@ public class UsuarioRepositoryTests {
                 .nombre("Yesica")
                 .apellido("Vargas")
                 .correo("yesica@gmail.com")
-                .clave("1234")
+                .password("1234")
                 .build());
         Usuarios usuarioUpdate = usuarioRepository.findById(usuario.getIdUsuario()).get();
 
@@ -62,7 +62,7 @@ public class UsuarioRepositoryTests {
         Assertions.assertNotEquals(usuario.getNombre(), usuarioUpdate.getNombre());
         Assertions.assertNotEquals(usuario.getApellido(), usuarioUpdate.getApellido());
         Assertions.assertNotEquals(usuario.getCorreo(), usuarioUpdate.getCorreo());
-        Assertions.assertNotEquals(usuario.getClave(), usuarioUpdate.getClave());
+        Assertions.assertNotEquals(usuario.getPassword(), usuarioUpdate.getPassword());
     }
 
     @Test
@@ -84,7 +84,7 @@ public class UsuarioRepositoryTests {
                 .nombre("Angel")
                 .apellido("Corzo")
                 .correo("email@gmail.com")
-                .clave("0000")
+                .password("0000")
                 .build();
     }
 }
