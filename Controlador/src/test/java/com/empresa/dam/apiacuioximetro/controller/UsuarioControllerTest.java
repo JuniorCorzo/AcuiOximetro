@@ -46,7 +46,7 @@ class UsuarioControllerTest {
                 .apellido("Corzo")
                 .rol(Role.ADMINISTRADOR)
                 .correo("prueba@gmail.com")
-                .clave("1234")
+                .password("1234")
                 .build();
     }
 
@@ -62,7 +62,7 @@ class UsuarioControllerTest {
                             "nombre": "Angel",
                             "apellido": "Corzo",
                             "correo": "p@gmail.com",
-                            "clave": "12345"
+                            "password": "12345"
                         }
                         """
                 )
@@ -77,7 +77,7 @@ class UsuarioControllerTest {
                 .apellido("Corzo")
                 .rol(Role.USUARIO)
                 .correo("prueba@gmail.com")
-                .clave("1234")
+                .password("1234")
                 .build();
         when(usuarioService.update(usuario)).thenReturn(usuarioUpdate);
         mockMvc.perform(put("/api/v1/usuarios/update")
@@ -89,7 +89,7 @@ class UsuarioControllerTest {
                                     "nombre": "Angelica",
                                     "apellido": "Corzo",
                                     "correo": "prueba@gmail.com",
-                                    "clave": "12345"
+                                    "password": "12345"
                                 }
                                 """
                         ))

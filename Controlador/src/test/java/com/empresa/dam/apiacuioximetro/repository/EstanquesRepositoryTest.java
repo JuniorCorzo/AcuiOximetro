@@ -23,6 +23,7 @@ class EstanquesRepositoryTest {
     void setUp() {
         estanquesRepository.save(Estanques.builder()
                 .idEspecie(1)
+                .idAcuicola(1)
                 .tipoEstanque("Geomenbrana")
                 .cantidadPeces(1000)
                 .build()
@@ -30,6 +31,7 @@ class EstanquesRepositoryTest {
 
         estanquesRepository.save(Estanques.builder()
                 .idEspecie(1)
+                .idAcuicola(1)
                 .tipoEstanque("Geomenbrana")
                 .cantidadPeces(100)
                 .build()
@@ -37,6 +39,7 @@ class EstanquesRepositoryTest {
 
         estanquesRepository.save(Estanques.builder()
                 .idEspecie(1)
+                .idAcuicola(1)
                 .tipoEstanque("Geomenbrana")
                 .cantidadPeces(1500)
                 .build()
@@ -44,6 +47,7 @@ class EstanquesRepositoryTest {
 
         estanquesRepository.save(Estanques.builder()
                 .idEspecie(1)
+                .idAcuicola(1)
                 .tipoEstanque("Geomenbrana")
                 .cantidadPeces(1050)
                 .build()
@@ -51,6 +55,7 @@ class EstanquesRepositoryTest {
 
         estanquesRepository.save(Estanques.builder()
                 .idEspecie(1)
+                .idAcuicola(1)
                 .tipoEstanque("Geomenbrana")
                 .cantidadPeces(1100)
                 .build()
@@ -58,10 +63,10 @@ class EstanquesRepositoryTest {
     }
 
     @Test
-    void EstanquesRepository_GetAllEstanques_ReturnAllEstanques() {
+    void EstanquesRepository_GetAllEstanquesByAcuicola_ReturnAllEstanques() {
         setUp();
 
-        List<Estanques> getAllEstanques = estanquesRepository.findAll();
+        List<Estanques> getAllEstanques = estanquesRepository.findAllByIdAcuicola(1);
         System.out.println(getAllEstanques);
 
         Assertions.assertNotNull(getAllEstanques);

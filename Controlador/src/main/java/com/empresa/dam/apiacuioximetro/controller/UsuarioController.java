@@ -43,19 +43,6 @@ public class UsuarioController {
     }
 
     /**
-     * Método HTTP GET que valida las credenciales de un usuario.
-     *
-     * @param correo Correo electrónico del usuario.
-     * @param clave  Clave del usuario.
-     * @return Booleano que indica si las credenciales son válidas o no.
-     */
-    @GetMapping("/validate")
-    @Deprecated
-    public Boolean validatedUsuario(@RequestParam("correo") String correo, @RequestParam("clave") String clave) throws CredentialsNotValid {
-        return this.serviceCrud.validate(correo, clave);
-    }
-
-    /**
      * Método HTTP POST que crea un nuevo usuario en la base de datos.
      *
      * @param usuario Objeto Usuario que se desea crear.

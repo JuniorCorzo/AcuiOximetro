@@ -34,7 +34,7 @@ class UsuarioServiceCrudTest {
                 .nombre("Angel")
                 .apellido("Corzo")
                 .correo("prueba@gmail.com")
-                .clave("1234")
+                .password("1234")
                 .build();
 
         when(repository.save(Mockito.any(Usuarios.class))).thenReturn(usuario);
@@ -51,7 +51,7 @@ class UsuarioServiceCrudTest {
                 .nombre("Angel")
                 .apellido("Corzo")
                 .correo("prueba@gmail.com")
-                .clave("1234")
+                .password("1234")
                 .build();
 
         try {
@@ -70,7 +70,7 @@ class UsuarioServiceCrudTest {
                 .nombre("Angel")
                 .apellido("Corzo")
                 .correo("prueba@gmail.com")
-                .clave("1234")
+                .password("1234")
                 .build();
 
         when(repository.existsById(usuario.getIdUsuario())).thenReturn(true);

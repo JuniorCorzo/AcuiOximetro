@@ -26,7 +26,7 @@ class JwtServiceTest {
                 .nombre("Angel")
                 .apellido("Corzo")
                 .correo("prueba@gmail.com")
-                .clave("1234")
+                .password("1234")
                 .build();
 
         String tokenCreated = jwtService.generateToken(usuario, generateExtraClaims(usuario));
@@ -43,7 +43,7 @@ class JwtServiceTest {
                 .nombre("Angel")
                 .apellido("Corzo")
                 .correo("prueba@gmail.com")
-                .clave("1234")
+                .password("1234")
                 .build();
 
         String extractedUsername = jwtService.extractUsername(jwtService.generateToken(usuario, generateExtraClaims(usuario)));

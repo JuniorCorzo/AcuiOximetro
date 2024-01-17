@@ -45,7 +45,7 @@ class AuthenticationServiceTest {
                 .nombre("Angel")
                 .apellido("Corzo")
                 .correo("prueba@gmail.com")
-                .clave(new BCryptPasswordEncoder().encode("1234"))
+                .password(new BCryptPasswordEncoder().encode("1234"))
                 .build();
         usuarioRepository.save(usuario);
         AuthenticationRequest authRequest = new AuthenticationRequest();

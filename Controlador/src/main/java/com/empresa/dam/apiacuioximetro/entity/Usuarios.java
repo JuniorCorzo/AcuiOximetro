@@ -1,6 +1,8 @@
 package com.empresa.dam.apiacuioximetro.entity;
 
 import com.empresa.dam.apiacuioximetro.utils.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -29,6 +31,10 @@ public class Usuarios implements UserDetails {
     @Column(name = "id_usuario")
     @NotNull
     private int idUsuario;
+
+    @Column(name = "id_acuicola")
+    @NotNull
+    private int idAcuicola;
 
     // Rol del usuario en el sistema.
 
@@ -63,9 +69,7 @@ public class Usuarios implements UserDetails {
     @Column(name = "clave")
     @NotNull
     @NotEmpty
-    private String clave;
-    @Column(name = "token")
-    private String token;
+    private String password;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -77,31 +81,36 @@ public class Usuarios implements UserDetails {
         return authorities;
     }
 
-    @Override
+    @JsonIgnoreProperties
     public String getPassword() {
-        return clave;
+        return password;
     }
 
+    @JsonIgnore
     @Override
     public String getUsername() {
         return nombre;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isEnabled() {
         return true;
