@@ -8,20 +8,21 @@ import TableNivelOxigeno from '../components/TableNivelOxigeno'
 
 const EstanqueDetalles = ({ route, navigation }) => {
   const { estanque } = route.params
+
   return (
     <ScrollView>
       <View style={styles.container}>
         <View>
           <Pressable style={styles.header} onPress={() => navigation.goBack()}>
             <Icons name='arrow-back-ios' size={30} color='#000' />
-            <Text style={styles.title}>INFORMACION DEL {estanque}</Text>
+            <Text style={styles.title}>INFORMACION DEL ESTANQUE {estanque.id}</Text>
           </Pressable>
         </View>
         <View>
           <View style={styles.imageContainer} />
         </View>
-        <View>
-          <EstanqueTable />
+        <View style={styles.containerTableOxigeno}>
+          <EstanqueTable estanque={estanque} />
         </View>
         <View>
           <Text>Estadisticas</Text>
@@ -48,7 +49,8 @@ const styles = StyleSheet.create({
     gap: 10
   },
   title: {
-    fontSize: 25
+    fontSize: 25,
+    textAlign: 'center'
   },
   imageContainer: {
     width: 250,

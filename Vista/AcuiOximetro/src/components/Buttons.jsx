@@ -1,27 +1,28 @@
 import React from 'react'
-import { Text, TouchableHighlight, StyleSheet } from 'react-native'
+import { Text, Pressable, StyleSheet } from 'react-native'
 import { useFonts } from 'expo-font'
 
-const Button = ({ text, onPress }) => {
+const Button = ({ text, onPress, font }) => {
   const [fontsLoaded] = useFonts({
-    'QuattrocentoSans-BoldItalic': require('../../assets/fonts/QuattrocentoSans-BoldItalic.ttf')
+    'QuattrocentoSans-BoldItalic': require('../../assets/fonts/QuattrocentoSans-BoldItalic.ttf'),
+    'HindVadodara-Medium': require('../../assets/fonts/HindVadodara-Medium.ttf')
   })
 
   if (!fontsLoaded) return null
   return (
-    <TouchableHighlight
+    <Pressable
       style={styles.button}
       underlayColor='#FFF'
       onPress={onPress}
     >
-      <Text style={styles.textButton}>{text}</Text>
-    </TouchableHighlight>
+      <Text style={[styles.textButton, { fontFamily: font }]}>{text}</Text>
+    </Pressable>
   )
 }
 
 const styles = StyleSheet.create({
   button: {
-    width: 340,
+    width: '100%',
     backgroundColor: '#FFF',
     borderWidth: 1,
     borderColor: 'black',
@@ -32,9 +33,7 @@ const styles = StyleSheet.create({
   },
   textButton: {
     color: 'black',
-    fontSize: 20,
-    fontFamily: 'QuattrocentoSans-BoldItalic',
-    fontWeight: 'bold'
+    fontSize: 20
   }
 })
 

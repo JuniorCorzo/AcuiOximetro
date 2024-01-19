@@ -1,14 +1,13 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import Constants from 'expo-constants'
 import { View, ScrollView, Text, StyleSheet } from 'react-native'
 import MenuUsuario from '../components/MenuUsuario.jsx'
 import Estanques from '../components/Estanques.jsx'
-import { fetchData } from '../api/FetchData.js'
-
-const apiData = fetchData('http://localhost:8080/api/v1/estanques')
+import Button from '../components/Buttons.jsx'
+import { useFetch } from '../api/UseFetch.js'
 
 const Inicio = ({ navigation }) => {
-  const data = apiData.read()
+  const { data, error, loading } = useFetch(`http://${Constants.expoConfig.extra.hostApi}:8080/api/v1/estanques/${1}`)
 
   return (
     <View style={[styles.header, styles.container]}>
@@ -21,11 +20,14 @@ const Inicio = ({ navigation }) => {
         <View style={styles.container}>
           <Text style={styles.title}>Estanques</Text>
           <View style={styles.containerEstanques}>
-            <Suspense fallback={<Text>Cargando...</Text>}>
-              {data?.map((estanque) => (
-                <Estanques key={estanque.id} nombre={'Estanque ' + estanque.id} onPress={() => navigation.navigate('EstanqueDetalles', { estanque: 'ESTANQUE ' + estanque.id })} />
-              ))}
-            </Suspense>
+            <Button text='Añadir Estanque' font='HindVadodara-Medium' />
+          </View>
+          <View style={styles.containerEstanques}>
+            {error && <Text>Error al cargar los estanques</Text>}
+            {loading && <Text>Cargando...</Text>}
+            {data?.map((estanque) => (
+              <Estanques key={estanque.id} nombre={'Estanque ' + estanque.id} onPress={() => navigation.navigate('EstanqueDetalles', { estanque })} />
+            ))}
           </View>
           <View />
         </View>
