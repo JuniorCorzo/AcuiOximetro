@@ -19,7 +19,7 @@ const Login = ({ navigation }) => {
           <Text style={styles.textLogin}>INICIAR SESION</Text>
           <Input placeholder='Usuario' />
           <Input placeholder='Contraseña' secure />
-          <Button text='ACCEDER' onPress={() => navigation.navigate('Inicio')} />
+          <Button text='ACCEDER' onPress={() => navigation.navigate('Inicio')} font='QuattrocentoSans-BoldItalic' />
         </View>
       </View>
     </KeyboardAvoidingView>
