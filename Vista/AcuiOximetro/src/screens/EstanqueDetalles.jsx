@@ -5,6 +5,7 @@ import Constantes from 'expo-constants'
 
 import EstanqueTable from '../components/EstanqueTable'
 import TableNivelOxigeno from '../components/TableNivelOxigeno'
+import Button from '../components/Buttons'
 
 const EstanqueDetalles = ({ route, navigation }) => {
   const { estanque } = route.params
@@ -20,6 +21,14 @@ const EstanqueDetalles = ({ route, navigation }) => {
         </View>
         <View>
           <View style={styles.imageContainer} />
+        </View>
+        <View style={styles.containerButtons}>
+          <View style={styles.buttons}>
+            <Button text='Modificar' />
+          </View>
+          <View style={styles.buttons}>
+            <Button text='Eliminar' />
+          </View>
         </View>
         <View style={styles.containerTableOxigeno}>
           <EstanqueTable estanque={estanque} />
@@ -60,8 +69,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  containerButtons: {
+    width: '95vw',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  buttons: {
+    width: '45vw'
+  },
   containerTableOxigeno: {
-    width: '95%'
+    width: '95vw'
   }
 
 })
