@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight + 20
   },
   container: {
+    width: '100vw',
     flex: 1,
     backgroundColor: '#FFF',
     alignItems: 'center',
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     fontSize: 25
   },
   containerEstanques: {
-    width: '85%',
+    width: '85vw',
     justifyContent: 'space-between',
     flexDirection: 'row',
     flexWrap: 'wrap',
