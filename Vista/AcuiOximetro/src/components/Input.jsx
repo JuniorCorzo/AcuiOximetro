@@ -22,7 +22,6 @@ const inputText = ({ placeholder, secure }) => {
 
 const styles = StyleSheet.create({
   input: {
-    width: 340,
     paddingLeft: 8,
     height: 50,
     borderColor: 'black',

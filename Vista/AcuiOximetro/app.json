@@ -27,7 +27,7 @@
       "favicon": "./assets/favicon.png"
     },
     "extra": {
-      "hostApi": "localhost"
+      "hostApi": "192.168.101.13"
     }
   }
 }

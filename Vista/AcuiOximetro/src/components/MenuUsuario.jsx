@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import {
   View,
   Text,
-  TouchableHighlight,
-  TouchableOpacity,
+  Pressable,
   StyleSheet
 } from 'react-native'
 import Icons from '@expo/vector-icons/FontAwesome'
@@ -27,9 +26,9 @@ const MenuUsuario = ({ nombre, isAdmin, navigation }) => {
   const renderAdmin = () => {
     if (isAdmin) {
       return (
-        <TouchableHighlight style={styles.opciones}>
+        <Pressable style={styles.opciones}>
           <Text style={styles.textOpciones}>Crear Nuevo Usuario</Text>
-        </TouchableHighlight>
+        </Pressable>
       )
     }
   }
@@ -38,17 +37,17 @@ const MenuUsuario = ({ nombre, isAdmin, navigation }) => {
     if (visible) {
       return (
         <View style={styles.menuOpciones}>
-          <TouchableHighlight style={styles.opciones}>
+          <Pressable style={styles.opciones}>
             <Text style={styles.textOpciones}>Opciones de Cuenta</Text>
-          </TouchableHighlight>
+          </Pressable>
           {renderAdmin()}
-          <TouchableHighlight
+          <Pressable
             onPress={() => {
               navigation.navigate('Login')
             }}
           >
             <Text style={styles.textOpciones}>Cerrar Sesión</Text>
-          </TouchableHighlight>
+          </Pressable>
         </View>
       )
     }
@@ -56,14 +55,14 @@ const MenuUsuario = ({ nombre, isAdmin, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.menu} onPress={tocarMenu}>
+      <Pressable style={styles.menu} onPress={tocarMenu}>
         <Icons
           name='chevron-right'
           style={{ transform: [{ rotate: `${rotacion}deg` }] }}
           size={20}
         />
         <Text style={styles.text}>Hola, {nombre}</Text>
-      </TouchableOpacity>
+      </Pressable>
       <View>{renderMenu()}</View>
     </View>
   )

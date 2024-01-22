@@ -24,7 +24,7 @@ const EstanqueDetalles = ({ route, navigation }) => {
         </View>
         <View style={styles.containerButtons}>
           <View style={styles.buttons}>
-            <Button text='Modificar' />
+            <Button text='Modificar' onPress={() => navigation.navigate('ModificarEstanque')} />
           </View>
           <View style={styles.buttons}>
             <Button text='Eliminar' />
@@ -70,15 +70,16 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   containerButtons: {
-    width: '95vw',
+    width: 350,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    gap: 10
   },
   buttons: {
-    width: '45vw'
+    width: 170
   },
   containerTableOxigeno: {
-    width: '95vw'
+    width: 360
   }
 
 })
