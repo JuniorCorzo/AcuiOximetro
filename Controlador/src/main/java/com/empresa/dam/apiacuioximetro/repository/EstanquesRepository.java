@@ -1,11 +1,16 @@
 package com.empresa.dam.apiacuioximetro.repository;
 
+import com.empresa.dam.apiacuioximetro.dto.EstanqueDTO;
 import com.empresa.dam.apiacuioximetro.entity.Estanques;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * EstanquesRepository es el repositorio encargado de gestionar las operaciones
@@ -13,5 +18,8 @@ import java.util.List;
  */
 @Repository
 public interface EstanquesRepository extends JpaRepository<Estanques, Integer> {
-    List<Estanques> findAllByIdAcuicola(@NotNull int idAcuicola);
+    @Modifying
+    @Query("SELECT DISTINCT new com.empresa.dam.apiacuioximetro.dto.EstanqueDTO (estanque.id, especies.nombre, estanque.tipoEstanque, estanque.cantidadPeces) FROM Estanques estanque, Especies especies WHERE estanque.idAcuicola = :idAcuicola ")
+    @Transactional
+    Set<EstanqueDTO> findAllByIdAcuicola(@Param("idAcuicola") int idAcuicola);
 }

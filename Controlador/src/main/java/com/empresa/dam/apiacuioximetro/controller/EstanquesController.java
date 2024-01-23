@@ -1,13 +1,17 @@
 package com.empresa.dam.apiacuioximetro.controller;
 
+import com.empresa.dam.apiacuioximetro.dto.EstanqueDTO;
 import com.empresa.dam.apiacuioximetro.entity.Estanques;
 import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
+import com.empresa.dam.apiacuioximetro.repository.EstanquesRepository;
 import com.empresa.dam.apiacuioximetro.service.EstanquesServiceCrud;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * EstanquesController es el controlador encargado de gestionar las operaciones
@@ -18,6 +22,8 @@ import java.util.List;
 @RequestMapping("api/v1/estanques")
 public class EstanquesController {
     private final EstanquesServiceCrud serviceCrud;
+    @Autowired
+    private EstanquesRepository repository;
 
     /**
      * Constructor de la clase EstanquesController.
@@ -35,7 +41,7 @@ public class EstanquesController {
      * @return List<Estanques>
      */
     @GetMapping("/{idAcuicola}")
-    public List<Estanques> findAll(@PathVariable int idAcuicola) {
+    public Set<EstanqueDTO> findAll(@PathVariable int idAcuicola) {
         return this.serviceCrud.getAllByAcuicola(idAcuicola);
     }
 

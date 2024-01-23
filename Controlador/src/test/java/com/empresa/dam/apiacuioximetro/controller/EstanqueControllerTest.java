@@ -1,6 +1,8 @@
 package com.empresa.dam.apiacuioximetro.controller;
 
+import com.empresa.dam.apiacuioximetro.dto.EstanqueDTO;
 import com.empresa.dam.apiacuioximetro.entity.Estanques;
+import com.empresa.dam.apiacuioximetro.repository.EstanquesRepository;
 import com.empresa.dam.apiacuioximetro.repository.UsuarioRepository;
 import com.empresa.dam.apiacuioximetro.service.EstanquesServiceCrud;
 import com.empresa.dam.apiacuioximetro.service.JwtService;
@@ -19,6 +21,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -28,6 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc(addFilters = false)
 @MockBeans({
         @MockBean(UsuarioRepository.class),
+        @MockBean(EstanquesRepository.class),
         @MockBean(JwtService.class)
 })
 @ExtendWith(MockitoExtension.class)
@@ -40,6 +44,7 @@ public class EstanqueControllerTest {
     private ObjectMapper objectMapper;
 
     private Estanques estanque;
+    private EstanqueDTO estanqueDTO;
 
     @BeforeEach
     void setUp() {
@@ -48,6 +53,13 @@ public class EstanqueControllerTest {
                 .idEspecie(1)
                 .tipoEstanque("Geomenbrana")
                 .cantidadPeces(1000)
+                .build();
+
+        estanqueDTO = EstanqueDTO.builder()
+                .idEstanque(1)
+                .nombre("cachama")
+                .tipoEstanque("Geomenbrana")
+                .CantidadPeces(1000)
                 .build();
     }
 
@@ -71,7 +83,7 @@ public class EstanqueControllerTest {
 
     @Test
     void EstanquesController_GetAllEstanque_ReturnsAllEstanques() throws Exception {
-        when(estanqueService.getAllByAcuicola(Mockito.anyInt())).thenReturn(List.of(estanque));
+        when(estanqueService.getAllByAcuicola(Mockito.anyInt())).thenReturn((Set.of(estanqueDTO)));
         mockMvc.perform((get("/api/v1/estanques/1"))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
