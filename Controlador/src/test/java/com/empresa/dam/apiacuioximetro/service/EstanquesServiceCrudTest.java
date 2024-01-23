@@ -1,5 +1,6 @@
 package com.empresa.dam.apiacuioximetro.service;
 
+import com.empresa.dam.apiacuioximetro.dto.EstanqueDTO;
 import com.empresa.dam.apiacuioximetro.entity.Estanques;
 import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
 import com.empresa.dam.apiacuioximetro.repository.EstanquesRepository;
@@ -11,10 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -28,10 +26,10 @@ class EstanquesServiceCrudTest {
 
     @Test
     void EstanqueService_getAllEstanques_ReturnAllEstanques(){
-        List<Estanques> estanques = Collections.emptyList();
+        Set<EstanqueDTO> estanques = Collections.emptySet();
 
         when(this.estanquesRepository.findAllByIdAcuicola(Mockito.anyInt())).thenReturn(estanques);
-        List<Estanques> getEstanques = this.estanquesService.getAllByAcuicola(1);
+        Set<EstanqueDTO> getEstanques = this.estanquesService.getAllByAcuicola(1);
 
         Assertions.assertNotNull(getEstanques);
     }

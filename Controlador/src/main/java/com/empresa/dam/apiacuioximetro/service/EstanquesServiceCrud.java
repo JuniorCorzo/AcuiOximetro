@@ -1,13 +1,15 @@
 package com.empresa.dam.apiacuioximetro.service;
 
+import com.empresa.dam.apiacuioximetro.dto.EstanqueDTO;
 import com.empresa.dam.apiacuioximetro.entity.Estanques;
 import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
+import com.empresa.dam.apiacuioximetro.repository.EspecieRepository;
 import com.empresa.dam.apiacuioximetro.repository.EstanquesRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * EstanquesServiceCrud es el servicio encargado de gestionar las operaciones
@@ -17,11 +19,11 @@ import java.util.List;
 @Service
 @NoArgsConstructor
 public class EstanquesServiceCrud {
-    private EstanquesRepository repository;
+    private EstanquesRepository estanqueRepository;
 
     @Autowired
-    public EstanquesServiceCrud(EstanquesRepository repository) {
-        this.repository = repository;
+    public EstanquesServiceCrud(EstanquesRepository estanqueRepository) {
+        this.estanqueRepository = estanqueRepository;
     }
 
     /**
@@ -31,8 +33,10 @@ public class EstanquesServiceCrud {
      * @return List<Estanques> - lista de objetos Estanques que contiene todos los
      * datos almacenados en la base de datos
      */
-    public List<Estanques> getAllByAcuicola(int idAcuicola) {
-        return this.repository.findAllByIdAcuicola(idAcuicola);
+    public Set<EstanqueDTO> getAllByAcuicola(int idAcuicola) {
+        Set<EstanqueDTO> estanqueSet = new TreeSet<>(Comparator.comparing(EstanqueDTO::getIdEstanque));
+        estanqueSet.addAll(this.estanqueRepository.findAllByIdAcuicola(1));
+        return estanqueSet;
     }
 
     /**
@@ -44,7 +48,7 @@ public class EstanquesServiceCrud {
      * @throws RuntimeException - Si no exite el id
      */
     public Estanques getById(int id) throws DataNotFoundById {
-        return this.repository.findById(id)
+        return this.estanqueRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundById("Estanques", id));
     }
 
@@ -56,7 +60,7 @@ public class EstanquesServiceCrud {
      * @return
      */
     public Estanques create(Estanques estanque) {
-        return this.repository.save(estanque);
+        return this.estanqueRepository.save(estanque);
     }
 
     /**
@@ -68,9 +72,9 @@ public class EstanquesServiceCrud {
      * @throws RuntimeException - Si no exite el id
      */
     public Estanques update(Estanques estanque) throws DataNotFoundById {
-        if (!this.repository.existsById(estanque.getId()))
+        if (!this.estanqueRepository.existsById(estanque.getId()))
             throw new DataNotFoundById("Estanques", estanque.getId());
-        return this.repository.save(estanque);
+        return this.estanqueRepository.save(estanque);
     }
 
     /**
@@ -81,7 +85,7 @@ public class EstanquesServiceCrud {
      * contrario devuelve false
      */
     public boolean deleteById(int id) {
-        this.repository.deleteById(id);
-        return !this.repository.existsById(id);
+        this.estanqueRepository.deleteById(id);
+        return !this.estanqueRepository.existsById(id);
     }
 }

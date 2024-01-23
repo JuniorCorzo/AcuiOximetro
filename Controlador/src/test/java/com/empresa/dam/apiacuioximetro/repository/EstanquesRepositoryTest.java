@@ -1,5 +1,7 @@
 package com.empresa.dam.apiacuioximetro.repository;
 
+import com.empresa.dam.apiacuioximetro.dto.EstanqueDTO;
+import com.empresa.dam.apiacuioximetro.entity.Especies;
 import com.empresa.dam.apiacuioximetro.entity.Estanques;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,7 +12,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.List;
+import java.util.Set;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
@@ -18,6 +20,8 @@ import java.util.List;
 class EstanquesRepositoryTest {
     @Autowired
     private EstanquesRepository estanquesRepository;
+    @Autowired
+    private EspecieRepository especieRepository;
 
 
     void setUp() {
@@ -55,22 +59,26 @@ class EstanquesRepositoryTest {
 
         estanquesRepository.save(Estanques.builder()
                 .idEspecie(1)
-                .idAcuicola(1)
+                .idAcuicola(2)
                 .tipoEstanque("Geomenbrana")
                 .cantidadPeces(1100)
                 .build()
         );
+
+        especieRepository.save(Especies.builder()
+                .nombre("Cachama")
+                .build());
     }
 
     @Test
     void EstanquesRepository_GetAllEstanquesByAcuicola_ReturnAllEstanques() {
         setUp();
 
-        List<Estanques> getAllEstanques = estanquesRepository.findAllByIdAcuicola(1);
+        Set<EstanqueDTO> getAllEstanques = estanquesRepository.findAllByIdAcuicola(1);
         System.out.println(getAllEstanques);
 
         Assertions.assertNotNull(getAllEstanques);
-        Assertions.assertEquals(5, getAllEstanques.size());
+        Assertions.assertEquals(4, getAllEstanques.size());
     }
 
     @Test

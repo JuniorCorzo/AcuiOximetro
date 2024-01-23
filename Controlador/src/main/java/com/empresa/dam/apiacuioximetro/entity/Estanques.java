@@ -1,5 +1,6 @@
 package com.empresa.dam.apiacuioximetro.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -35,13 +36,13 @@ public class Estanques {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "id_acuicola")
-    @NotNull
-    private int idAcuicola;
-
     @Column(name = "id_especie")
     @NotNull
     private int idEspecie;
+
+    @Column(name = "id_acuicola")
+    @NotNull
+    private int idAcuicola;
 
     @Column(name = "tipo_estanque")
     @NotNull
@@ -49,5 +50,4 @@ public class Estanques {
 
     @Column(name = "cantidad_peces")
     private int cantidadPeces;
-
 }
