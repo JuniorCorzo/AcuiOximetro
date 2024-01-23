@@ -1,5 +1,6 @@
 package com.empresa.dam.apiacuioximetro.repository;
 
+import com.empresa.dam.apiacuioximetro.dto.EspecieDTO;
 import com.empresa.dam.apiacuioximetro.entity.Especies;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +11,8 @@ import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
@@ -36,5 +39,14 @@ class EspecieRepositoryTest {
         Assertions.assertNotNull(especieById);
         Assertions.assertEquals(1, especieById.getId());
         Assertions.assertEquals("Cachama", especieById.getNombre());
+    }
+
+    @Test
+    void EspecieRepository_FindAllNombres_ReturnAllNombresEspecies(){
+        List<EspecieDTO> getAllNombresEspecies = this.especieRepository.findAllNombre();
+
+        Assertions.assertNotNull(getAllNombresEspecies);
+        Assertions.assertEquals(2, getAllNombresEspecies.size());
+        Assertions.assertEquals("Trucha", getAllNombresEspecies.get(1).getNombre());
     }
 }

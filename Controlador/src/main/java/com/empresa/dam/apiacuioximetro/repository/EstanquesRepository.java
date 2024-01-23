@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -19,7 +18,11 @@ import java.util.Set;
 @Repository
 public interface EstanquesRepository extends JpaRepository<Estanques, Integer> {
     @Modifying
-    @Query("SELECT DISTINCT new com.empresa.dam.apiacuioximetro.dto.EstanqueDTO (estanque.id, especies.nombre, estanque.tipoEstanque, estanque.cantidadPeces) FROM Estanques estanque, Especies especies WHERE estanque.idAcuicola = :idAcuicola ")
+    @Query("""
+            SELECT DISTINCT new com.empresa.dam.apiacuioximetro.dto.EstanqueDTO (estanque.id, especies.nombre, estanque.tipoEstanque, estanque.cantidadPeces) 
+            FROM Estanques estanque, Especies especies 
+            WHERE estanque.idAcuicola = :idAcuicola 
+            """)
     @Transactional
     Set<EstanqueDTO> findAllByIdAcuicola(@Param("idAcuicola") int idAcuicola);
 }
