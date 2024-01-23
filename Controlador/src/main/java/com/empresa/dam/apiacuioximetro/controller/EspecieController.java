@@ -1,10 +1,13 @@
 package com.empresa.dam.apiacuioximetro.controller;
 
+import com.empresa.dam.apiacuioximetro.dto.EspecieDTO;
 import com.empresa.dam.apiacuioximetro.entity.Especies;
 import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
 import com.empresa.dam.apiacuioximetro.service.EspecieServiceCrud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/especies")
@@ -19,5 +22,10 @@ public class EspecieController {
     @GetMapping("/{id}")
     public Especies findById(@PathVariable int id) throws DataNotFoundById {
         return this.serviceCrud.getById(id);
+    }
+
+    @GetMapping("/")
+    public List<EspecieDTO> getAllNombres(){
+        return this.serviceCrud.getAllNombres();
     }
 }

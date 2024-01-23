@@ -1,5 +1,6 @@
 package com.empresa.dam.apiacuioximetro.service;
 
+import com.empresa.dam.apiacuioximetro.dto.EspecieDTO;
 import com.empresa.dam.apiacuioximetro.entity.Especies;
 import com.empresa.dam.apiacuioximetro.exceptions.DataNotFoundById;
 import com.empresa.dam.apiacuioximetro.repository.EspecieRepository;
@@ -11,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.when;
@@ -35,6 +37,14 @@ class EspecieServiceCrudTest {
     @Test
     void EspecieService_GetEspecieById_ThrowDataNotFoundById(){
         Assertions.assertThrows(DataNotFoundById.class, () -> especieService.getById(1));
+    }
+
+    @Test
+    void EspecieServicie_GetAllNombreEspecies_ReturnNombreEspecies(){
+        when(especieRepository.findAllNombre()).thenReturn(List.of(Mockito.mock(EspecieDTO.class)));
+        List<EspecieDTO> getAllNombres = this.especieService.getAllNombres();
+
+        Assertions.assertNotNull(getAllNombres);
     }
 
 }
