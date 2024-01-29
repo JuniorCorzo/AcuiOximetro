@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-indent */
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, Pressable } from 'react-native'
 import Icons from '@expo/vector-icons/FontAwesome'
 
-const DropdownMenu = ({ title, data }) => {
+const DropdownMenu = ({ title, data, onValueChange, onIdChange }) => {
   const [open, setOpen] = useState(false)
   const [rotate, setRotate] = useState(0)
   const [text, setText] = useState(title)
@@ -19,17 +20,22 @@ const DropdownMenu = ({ title, data }) => {
   const renderOptions = () => {
     if (open) {
       return (
-        <View style={styles.main}>
-          {data?.map((item, index) => (
-            <Pressable
-              key={index} onPress={() => {
-                changeTitle(item)
-                touch()
-              }} style={styles.container}
-            >
+        <View style={{ gap: 10, alignItems: 'center' }}>
+          {data?.map((item, index) => (text !== item
+            ? <Pressable
+                key={index + 1} onPress={() => {
+                  changeTitle(item)
+                  touch()
+                  onValueChange(item)
+                  onIdChange(index + 1)
+                }} style={[styles.container, styles.containeOptions, styles.borderRadius]}
+              >
               <Text style={styles.text}>{item}</Text>
-            </Pressable>
+              </Pressable>
+            : null
+
           ))}
+          <View />
         </View>
       )
     }
@@ -37,38 +43,47 @@ const DropdownMenu = ({ title, data }) => {
 
   return (
     <View style={styles.main}>
-      <View style={styles.container}>
-        <Pressable style={styles.containerMenu} onPress={touch}>
-          <Icons
-            name='chevron-right'
-            size={10}
-            color='#000'
-            style={{ transform: [{ rotate: `${rotate}deg` }] }}
-          />
-          <Text style={styles.text}>{text}</Text>
-        </Pressable>
+      <View style={styles.borderRadius}>
+        <View style={styles.container}>
+          <Pressable style={styles.containerMenu} onPress={touch}>
+            <Icons
+              name='chevron-right'
+              size={10}
+              color='#000'
+              style={{ transform: [{ rotate: `${rotate}deg` }] }}
+            />
+            <Text style={styles.text}>{text}</Text>
+          </Pressable>
+        </View>
+        {renderOptions()}
       </View>
-      {renderOptions()}
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   main: {
+    width: 320,
     gap: 10
   },
   container: {
     backgroundColor: '#FFF',
     height: 50,
     paddingVertical: 15,
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    borderRadius: 5
+    paddingHorizontal: 10
   },
   containerMenu: {
     alignItems: 'center',
     flexDirection: 'row',
     gap: 10
+  },
+  containeOptions: {
+    width: 300
+  },
+  borderRadius: {
+    borderWidth: 1,
+    borderRadius: 5,
+    overflow: 'hidden'
   },
   text: {
     textAlign: 'center',

@@ -26,7 +26,12 @@ const MenuUsuario = ({ nombre, isAdmin, navigation }) => {
   const renderAdmin = () => {
     if (isAdmin) {
       return (
-        <Pressable style={styles.opciones}>
+        <Pressable
+          style={styles.opciones}
+          onPress={() => {
+            navigation.navigate('RegistrarUsuario')
+          }}
+        >
           <Text style={styles.textOpciones}>Crear Nuevo Usuario</Text>
         </Pressable>
       )

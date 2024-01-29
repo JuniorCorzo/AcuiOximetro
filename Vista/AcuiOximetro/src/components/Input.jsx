@@ -2,7 +2,7 @@ import React from 'react'
 import { useFonts } from 'expo-font'
 import { View, TextInput, StyleSheet } from 'react-native'
 
-const inputText = ({ placeholder, secure }) => {
+const inputText = ({ placeholder, secure, onChangeText, value }) => {
   const [fontsLoaded] = useFonts({
     'HindVadodara-Medium': require('../../assets/fonts/HindVadodara-Medium.ttf')
   })
@@ -15,6 +15,8 @@ const inputText = ({ placeholder, secure }) => {
         style={styles.input}
         placeholder={placeholder}
         secureTextEntry={secure}
+        onChangeText={onChangeText}
+        value={value}
       />
     </View>
   )
