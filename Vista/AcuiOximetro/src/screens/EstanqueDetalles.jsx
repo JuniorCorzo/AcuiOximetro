@@ -16,7 +16,7 @@ const EstanqueDetalles = ({ route, navigation }) => {
         <View>
           <Pressable style={styles.header} onPress={() => navigation.goBack()}>
             <Icons name='arrow-back-ios' size={30} color='#000' />
-            <Text style={styles.title}>INFORMACION DEL ESTANQUE {estanque.id}</Text>
+            <Text style={styles.title}>INFORMACION DEL ESTANQUE {estanque.idEstanque}</Text>
           </Pressable>
         </View>
         <View>

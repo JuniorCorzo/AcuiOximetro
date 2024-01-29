@@ -1,19 +1,30 @@
 /* eslint-disable react/jsx-handler-names */
-import React from 'react'
+import React, { useState } from 'react'
 import { View, ScrollView, Text, Pressable, KeyboardAvoidingView, Keyboard, StyleSheet } from 'react-native'
 import Constants from 'expo-constants'
 import { useFonts } from 'expo-font'
+import { postData } from '../api/PostData'
 
 import Button from '../components/Buttons'
 import FormEstanque from '../components/FormEstanque'
 
-const AñadirEstanque = ({ navigation }) => {
+const AñadirEstanque = ({ navigation, route }) => {
+  const { update } = route.params
+  const [formEstanqueData, setFormEstanqueData] = useState({ idAcuicola: 1 })
+
   const [fontsLoaded] = useFonts({
     'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf')
   })
-
   if (!fontsLoaded) return null
 
+  const handlePostData = async () => {
+    const [err] = await postData(`${Constants.expoConfig.extra.hostApi}/estanques/create`, formEstanqueData)
+    if (err) {
+      console.error('Error al registrar el estanque')
+    } else {
+      update()
+    }
+  }
   return (
     <Pressable onPress={Keyboard.dismiss}>
       <ScrollView
@@ -28,9 +39,9 @@ const AñadirEstanque = ({ navigation }) => {
               </View>
               <View style={styles.containerForm}>
                 <Text style={styles.subTitle}>REGISTRAR ESTANQUES</Text>
-                <FormEstanque />
+                <FormEstanque onFormChange={setFormEstanqueData} />
                 <View style={{ width: 320 }}>
-                  <Button text='REGISTRAR' />
+                  <Button text='REGISTRAR' onPress={handlePostData} />
                 </View>
               </View>
             </View>
