@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface EspecieRepository extends JpaRepository<Especies, Integer> {
     @Query("""
-            SELECT new com.empresa.dam.apiacuioximetro.dto.EspecieDTO(e.nombre)
+            SELECT DISTINCT new com.empresa.dam.apiacuioximetro.dto.EspecieDTO(e.id, e.nombre)
             FROM Especies e
             """)
     List<EspecieDTO> findAllNombre();
